@@ -1,0 +1,14 @@
+--BOOKING INFO--
+Booking page should have dates, times, and courts
+Minimum booking time is an hour and half
+Max booking time is 3 hours
+2 people reservartion is 90-180 minutes
+Court occupancy data to be saved on backend and all requests compared with that
+No more than 2 bookings per individual per day
+Bookings must be separated by at least an hour
+Earliest booking time is 6:30am
+Latest booking time is 8:30pm
+Teammates can book back to back. allowed long as it is in different names 
+
+--BILLING--
+Treasurer can see more in their member directory
