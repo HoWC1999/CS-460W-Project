@@ -1,4 +1,5 @@
 --BOOKING INFO--
+-DELIVERABLE 1-
 In making groups, type the name and select the user if they are registered 
 If you have the same names, use the email
 The booking page should have dates, times, and courts
@@ -13,6 +14,8 @@ Latest booking time is 8:30 pm
 Teammates can book back-to-back. allowed as long as it is in different names 
 For doubles, a minimum of three players 
 After clicking people to play, there should be a guest option
+
+-DELIVERABLE 2-
 All people added in game should get email when a court is booked with them added
 all players should get emails when there are reservation edits
 only the person who made reservation can edit reservation 
