@@ -1,31 +1,35 @@
 import React from "react";
 import "../styles/HomePage.css";
+import QuoteCarousel from "./QuoteCarousel";
 
 const HomePage = () => {
     return (
-        <div className="container">
-            {/* Navigation Bar */}
-            <nav classname="navbar">
-                <div className="nav-left">
-                    <span className = "search-icon">🔍</span>
-                    <a href="#" className="nav-item"> Become a member</a>
-                </div>
+        <div className="homepage-container">
+        {/* Main content includes BOTH the carousel (center) and chat (right) */}
+            <div className="main-content">
 
-                <div className="nav-center">
-                    <a href="#" className="nav-item"> Home </a>
-                    <a href="#" className="nav-item"> Login </a>
-                    <a href="#" className="nav-item"> Events </a>
-                    <a href="#" className="nav-item"> Reserve Court </a>
-                    <a href="#" className="nav-item"> About Us </a>
-                </div>
+            {/* Carousel in the center */}
+            <div className="handle-carousel">
+                <QuoteCarousel />
+            </div>
 
-                <div className="nav-right">
-                    <span className="Settings">⚙️</span>
-                    <span className="language-selector">en-US</span>
-                </div>
-            </nav>
+            {/* AI Chatbox Section on the right */}
+            <div className="chatbox">
+                <h2>Chat with Our AI Assistant</h2>
+                <p>Ask any questions about our tennis club, membership, or scheduling!</p>
+
+                {/* "..." region for user input – e.g. a text area or input */}
+                <textarea
+                    className="chat-input"
+                    placeholder="Type your question here..."
+                ></textarea>
+
+                {/* Submit or Send button */}
+                <button className="chat-submit">Ask</button>
+            </div>
         </div>
+    </div>
     );
-}
+};
 
 export default HomePage;

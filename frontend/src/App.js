@@ -1,14 +1,29 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Pages
+import HomePage from './pages/HomePage';
+import CourtReservation from './pages/CourtReservation';
+import Navbar from './pages/Navbar';
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+
+// Styles (global, if any)
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <div className="app-layout">
+      <Router>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/reserve" element={<CourtReservation />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

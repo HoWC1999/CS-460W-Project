@@ -1,0 +1,37 @@
+.footer{
+    position: fixed;     /* take it out of normal flow and pin it */
+    bottom: 0;           /* stick to bottom edge */
+    left: 0;             /* span full width */
+    right: 0;
+    background-color: gainsboro;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid black;
+    z-index: 1000;       /* ensure it appears above other elements */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-item {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.language{
+    margin-left: 5px;
+    font-size: 0.9rem;
+}
