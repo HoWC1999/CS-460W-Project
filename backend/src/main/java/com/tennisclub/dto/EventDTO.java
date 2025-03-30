@@ -1,56 +1,22 @@
-package com.tennisclub.model;
+package com.tennisclub.dto;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "events")
-public class Event {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int eventId;
-
-  @Column(nullable = false)
+public class EventDTO {
   private String title;
-
-  @Lob
   private String description;
-
-  @Temporal(TemporalType.DATE)
-  @Column(nullable = false)
   private Date eventDate;
-
-  @Temporal(TemporalType.TIME)
-  @Column(nullable = false)
   private Date eventTime;
-
   private String location;
 
-  // Constructors
-  public Event() {
-  }
+  public EventDTO() {}
 
-  public Event(String title, String description, Date eventDate, Date eventTime, String location) {
+  public EventDTO(String title, String description, Date eventDate, Date eventTime, String location) {
     this.title = title;
     this.description = description;
     this.eventDate = eventDate;
     this.eventTime = eventTime;
     this.location = location;
-  }
-
-  // Business Logic: Check if the event is upcoming
-  public boolean isUpcoming() {
-    return eventDate.after(new Date());
-  }
-
-  // Getters and setters
-  public int getEventId() {
-    return eventId;
-  }
-
-  public void setEventId(int eventId) {
-    this.eventId = eventId;
   }
 
   public String getTitle() {

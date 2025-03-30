@@ -1,10 +1,10 @@
 package com.tennisclub.repository;
 
-import com.tennisclub.model.Event;
+import com.tennisclub.model.FinancialReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Integer> {
+public interface FinancialReportRepository extends JpaRepository<FinancialReport, Integer> {
   // Add custom queries if needed.
 }

@@ -6,14 +6,18 @@ import java.util.List;
 
 @Service
 public class AuditService {
-  private List<String> logs = new ArrayList<>();
 
+  private final List<String> auditLogs = new ArrayList<>();
+
+  // Log an event with a timestamp
   public void logEvent(String event) {
-    logs.add(event);
-    System.out.println("Audit Log: " + event);
+    String logEntry = "[" + new java.util.Date() + "] " + event;
+    auditLogs.add(logEntry);
+    System.out.println("Audit log: " + logEntry);
   }
 
-  public List<String> getLogs() {
-    return logs;
+  // Retrieve a copy of all audit logs
+  public List<String> getAuditLogs() {
+    return new ArrayList<>(auditLogs);
   }
 }
