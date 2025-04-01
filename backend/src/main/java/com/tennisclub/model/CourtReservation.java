@@ -1,9 +1,14 @@
 package com.tennisclub.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "court_reservations")
 public class CourtReservation {
@@ -13,80 +18,26 @@ public class CourtReservation {
   private int reservationId;
 
   @Temporal(TemporalType.DATE)
+  @Column(nullable = false)
   private Date reservationDate;
 
+  @Column(nullable = false)
   private Time startTime;
 
+  @Column(nullable = false)
   private Time endTime;
 
+  // Assuming a many-to-one relationship with User
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false)
   private User bookedBy;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "court_number", nullable = false)
-  private Court court;
+  @Column(name = "court_number", nullable = false)
+  private int courtNumber;
 
-  // Constructors
   public CourtReservation() {
   }
 
-  public CourtReservation(Date reservationDate, Time startTime, Time endTime, User bookedBy, Court court) {
-    this.reservationDate = reservationDate;
-    this.startTime = startTime;
-    this.endTime = endTime;
-    this.bookedBy = bookedBy;
-    this.court = court;
-  }
-
-  // Business Logic: Validate reservation times (e.g., startTime should be before endTime)
-  public boolean isValidReservation() {
-    return startTime != null && endTime != null && startTime.before(endTime);
-  }
-
   // Getters and setters
-  public int getReservationId() {
-    return reservationId;
-  }
 
-  public void setReservationId(int reservationId) {
-    this.reservationId = reservationId;
-  }
-
-  public Date getReservationDate() {
-    return reservationDate;
-  }
-
-  public void setReservationDate(Date reservationDate) {
-    this.reservationDate = reservationDate;
-  }
-
-  public Time getStartTime() {
-    return startTime;
-  }
-
-  public void setStartTime(Time startTime) {
-    this.startTime = startTime;
-  }
-
-  public Time getEndTime() {
-    return endTime;
-  }
-
-  public void setEndTime(Time endTime) {
-    this.endTime = endTime;
-  }
-
-  public User getBookedBy() {
-    return bookedBy;
-  }
-
-  public void setBookedBy(User bookedBy) {
-    this.bookedBy = bookedBy;
-  }
-
-  public Court getCourt() {
-    return court;
-  }
-
-  public
+}

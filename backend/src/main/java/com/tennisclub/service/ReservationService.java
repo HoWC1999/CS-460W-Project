@@ -1,14 +1,18 @@
 package com.tennisclub.service;
 
-import com.tennisclub.model.Court;
+import com.tennisclub.dto.CourtReservationDTO;
 import com.tennisclub.model.CourtReservation;
 import com.tennisclub.model.User;
-import com.tennisclub.repository.CourtRepository;
 import com.tennisclub.repository.CourtReservationRepository;
 import com.tennisclub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class ReservationService {
@@ -19,65 +23,70 @@ public class ReservationService {
   @Autowired
   private UserRepository userRepository;
 
-  @Autowired
-  private CourtRepository courtRepository;
+  // Default reservation duration in minutes (e.g., 90 minutes)
+  private static final int DEFAULT_DURATION_MINUTES = 90;
 
-  public CourtReservation createReservation(CourtReservation reservation) {
-    // Validate reservation times
-    if(!reservation.isValidReservation()) {
-      throw new RuntimeException("Invalid reservation times: start time must be before end time");
+  public CourtReservation createReservation(CourtReservationDTO dto) throws ParseException {
+    // Lookup the user by email. (Adjust according to your user handling.)
+    User user = userRepository.findByEmail(dto.getEmail());
+    if (user == null) {
+      throw new RuntimeException("User not found for email: " + dto.getEmail());
     }
 
-    // Validate user
-    Optional<User> optionalUser = userRepository.findById(reservation.getBookedBy().getUserId());
-    if(!optionalUser.isPresent()) {
-      throw new RuntimeException("User not found for reservation");
-    }
-    reservation.setBookedBy(optionalUser.get());
+    // Parse the reservation date
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Date reservationDate = dateFormat.parse(dto.getDate());
 
-    // Validate court
-    Optional<Court> optionalCourt = courtRepository.findById(reservation.getCourt().getCourtNumber());
-    if(!optionalCourt.isPresent()) {
-      throw new RuntimeException("Court not found");
+    // Parse the start time. Expect "HH:mm" format and append ":00" if needed.
+    String timeString = dto.getTime();
+    if (timeString.split(":").length == 2) {
+      timeString += ":00";
     }
-    Court court = optionalCourt.get();
-    if(!court.isAvailable()) {
-      throw new RuntimeException("Court is not available for reservation");
+    Time startTime = Time.valueOf(timeString);
+
+    // Calculate the end time using the default duration
+    long startMillis = startTime.getTime();
+    long durationMillis = DEFAULT_DURATION_MINUTES * 60 * 1000;
+    Time endTime = new Time(startMillis + durationMillis);
+
+    // Check for overlapping reservations for the same court and date.
+    List<CourtReservation> existingReservations =
+      reservationRepository.findByReservationDateAndCourtNumber(reservationDate, dto.getCourt());
+    for (CourtReservation existing : existingReservations) {
+      if (timesOverlap(startTime, endTime, existing.getStartTime(), existing.getEndTime())) {
+        throw new RuntimeException("Court " + dto.getCourt() + " is already reserved during the requested time.");
+      }
     }
-    reservation.setCourt(court);
 
-    // Optionally update court availability here
+    // Create the reservation entity and populate it.
+    CourtReservation reservation = new CourtReservation();
+    reservation.setReservationDate(reservationDate);
+    reservation.setStartTime(startTime);
+    reservation.setEndTime(endTime);
+    reservation.setBookedBy(user);
+    reservation.setCourtNumber(dto.getCourt());
 
+    // Save the reservation to the database.
     return reservationRepository.save(reservation);
   }
 
-  public boolean cancelReservation(int reservationId) {
-    if(!reservationRepository.existsById(reservationId)) {
-      throw new RuntimeException("Reservation not found");
-    }
-    reservationRepository.deleteById(reservationId);
-    // Optionally update court availability here
-    return true;
+  /**
+   * Helper method to determine if two time intervals overlap.
+   * Returns true if [start1, end1) and [start2, end2) overlap.
+   */
+  private boolean timesOverlap(Time start1, Time end1, Time start2, Time end2) {
+    // Two intervals overlap if the start of one is before the end of the other and vice versa.
+    return start1.before(end2) && start2.before(end1);
+  }
+  /**
+   * Retrieves reservations for a user based on their user ID.
+   *
+   * @param userId the user's id
+   * @return list of reservations
+   */
+  public List<CourtReservation> getReservationsForUserId(int userId) {
+    User user = userRepository.findById(userId);
+    return reservationRepository.findByBookedBy(user);
   }
 
-  public CourtReservation modifyReservation(int reservationId, CourtReservation newReservationData) {
-    Optional<CourtReservation> optionalReservation = reservationRepository.findById(reservationId);
-    if(!optionalReservation.isPresent()) {
-      throw new RuntimeException("Reservation not found");
-    }
-    CourtReservation reservation = optionalReservation.get();
-    if(newReservationData.getReservationDate() != null) {
-      reservation.setReservationDate(newReservationData.getReservationDate());
-    }
-    if(newReservationData.getStartTime() != null) {
-      reservation.setStartTime(newReservationData.getStartTime());
-    }
-    if(newReservationData.getEndTime() != null) {
-      reservation.setEndTime(newReservationData.getEndTime());
-    }
-    if(!reservation.isValidReservation()) {
-      throw new RuntimeException("Invalid reservation times after modification");
-    }
-    return reservationRepository.save(reservation);
-  }
 }

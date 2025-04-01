@@ -1,13 +1,18 @@
 package com.tennisclub.model;
 
 import com.tennisclub.model.enums.DisputeStatus;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "payment_disputes")
 public class PaymentDispute {
 
+  // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int disputeId;
@@ -31,36 +36,4 @@ public class PaymentDispute {
     return false;
   }
 
-  // Getters and setters
-  public int getDisputeId() {
-    return disputeId;
-  }
-
-  public void setDisputeId(int disputeId) {
-    this.disputeId = disputeId;
-  }
-
-  public String getReason() {
-    return reason;
-  }
-
-  public void setReason(String reason) {
-    this.reason = reason;
-  }
-
-  public DisputeStatus getStatus() {
-    return status;
-  }
-
-  public void setStatus(DisputeStatus status) {
-    this.status = status;
-  }
-
-  public FinancialTransaction getTransaction() {
-    return transaction;
-  }
-
-  public void setTransaction(FinancialTransaction transaction) {
-    this.transaction = transaction;
-  }
 }

@@ -1,12 +1,18 @@
 package com.tennisclub.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "financial_reports")
 public class FinancialReport {
 
+  // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int reportId;
@@ -23,29 +29,5 @@ public class FinancialReport {
     this.generatedOn = new Date();
   }
 
-  // Getters and setters
-  public int getReportId() {
-    return reportId;
-  }
-
-  public void setReportId(int reportId) {
-    this.reportId = reportId;
-  }
-
-  public Date getGeneratedOn() {
-    return generatedOn;
-  }
-
-  public void setGeneratedOn(Date generatedOn) {
-    this.generatedOn = generatedOn;
-  }
-
-  public String getReportData() {
-    return reportData;
-  }
-
-  public void setReportData(String reportData) {
-    this.reportData = reportData;
-  }
 }
 

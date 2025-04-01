@@ -18,54 +18,55 @@ public class UserService {
   private PasswordEncoder passwordEncoder;
 
   public User register(User user) {
-    // Ensure username uniqueness
-    if(userRepository.findByUsername(user.getUsername()) != null) {
+    if (userRepository.findByUsername(user.getUsername()) != null) {
       throw new RuntimeException("Username already exists");
     }
-    // Encrypt the password before saving
     user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
-    // Set default role and status if not provided
-    if(user.getRole() == null) {
+    if (user.getRole() == null) {
       user.setRole(Role.MEMBER);
     }
-    if(user.getStatus() == null) {
+    if (user.getStatus() == null) {
       user.setStatus("Active");
     }
     return userRepository.save(user);
   }
 
   public User updateProfile(int userId, User newData) {
-    Optional<User> optionalUser = userRepository.findById(userId);
-    if(!optionalUser.isPresent()) {
+    User user = userRepository.findById(userId);
+    if (user == null) {
       throw new RuntimeException("User not found");
     }
-    User user = optionalUser.get();
-    if(newData.getUsername() != null) {
+    if (newData.getUsername() != null) {
       user.setUsername(newData.getUsername());
     }
-    if(newData.getEmail() != null) {
+    if (newData.getEmail() != null) {
       user.setEmail(newData.getEmail());
     }
-    if(newData.getPasswordHash() != null && !newData.getPasswordHash().isEmpty()) {
+    if (newData.getPasswordHash() != null && !newData.getPasswordHash().isEmpty()) {
       user.setPasswordHash(passwordEncoder.encode(newData.getPasswordHash()));
     }
     return userRepository.save(user);
   }
 
-  public User getUserById(int id) {
-    return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+  public User getUserById(int userId) {
+    return userRepository.findById(userId);
   }
 
-  public boolean deleteUser(int id) {
-    if(userRepository.existsById(id)) {
-      userRepository.deleteById(id);
+  public User getUserByUsername(String username) {
+    return userRepository.findByUsername(username);
+  }
+
+
+  public boolean deleteUser(int userId) {
+    if(userRepository.existsById(userId)) {
+      userRepository.deleteById(userId);
       return true;
     }
     return false;
   }
 
-  public boolean assignRole(int id, String roleStr) {
-    Optional<User> optionalUser = userRepository.findById(id);
+  public boolean assignRole(int userId, String roleStr) {
+    Optional<User> optionalUser = Optional.ofNullable(userRepository.findById(userId));
     if(!optionalUser.isPresent()) {
       throw new RuntimeException("User not found");
     }

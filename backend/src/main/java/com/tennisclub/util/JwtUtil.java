@@ -1,30 +1,51 @@
 package com.tennisclub.util;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
+import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
-  private final String SECRET_KEY = "YourSecretKey"; // Move to properties in production
-  private final long EXPIRATION_TIME = 3600000; // 1 hour
 
+  // Generate a secure key for HS512 using the new key builder available in JJWT 0.12.0.
+  // This replaces the deprecated secretKeyFor() helper method.
+  private static final SecretKey key = Jwts.SIG.HS512.key().build();
+
+  // Token expiration time: 1 hour (3600000 milliseconds)
+  private final long EXPIRATION_TIME = 3600000;
+
+  /**
+   * Generates a JWT token for the given username.
+   *
+   * @param username the username to set as the subject in the token
+   * @return a signed JWT token as a String
+   */
   public String generateToken(String username) {
-    return Jwts.builder()
-      .setSubject(username)
-      .setIssuedAt(new Date())
-      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-      .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-      .compact();
+    return Jwts.builder().subject(username)
+      .issuedAt(new Date())
+      .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // Set expiration time
+      .signWith(key) // Sign the JWT using the generated key
+      .compact(); // Build and serialize the JWT to a compact, URL-safe string
   }
 
-  public String validateToken(String token) {
-    // Validate and parse token, return username if valid
+  /**
+   * Validates the provided JWT token and extracts the subject (username).
+   *
+   * @param token the JWT token to validate
+   * @return the subject (username) if the token is valid
+   * @throws io.jsonwebtoken.JwtException if the token is invalid or expired
+   */
+  public static String validateToken(String token) {
+    // Use parserBuilder() which is available in JJWT 0.12.0 to parse the token.
     return Jwts.parser()
-      .setSigningKey(SECRET_KEY)
-      .parseClaimsJws(token)
-      .getBody()
-      .getSubject();
+      .verifyWith(key) // Set the signing key for verifying the token
+      .build()
+      .parseSignedClaims(token)
+      .getPayload()
+      .getSubject(); // Extract the subject (username) from the token claims
+
   }
 }

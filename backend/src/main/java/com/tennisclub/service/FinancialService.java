@@ -55,7 +55,8 @@ public class FinancialService {
         .append(ft.getStatus()).append("\n");
     }
     // Save the generated report into the database (optional)
-    FinancialReport financialReport = new FinancialReport(report.toString());
+    FinancialReport financialReport = new FinancialReport();
+    financialReport.setReportData(report.toString());
     reportRepository.save(financialReport);
     return report.toString();
   }

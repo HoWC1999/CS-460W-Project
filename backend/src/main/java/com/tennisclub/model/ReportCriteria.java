@@ -1,14 +1,20 @@
 package com.tennisclub.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "report_criteria")
 public class ReportCriteria {
 
+  // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -30,36 +36,4 @@ public class ReportCriteria {
     this.filters.put(key, value);
   }
 
-  // Getters and setters
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public Date getStartDate() {
-    return startDate;
-  }
-
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
-
-  public Date getEndDate() {
-    return endDate;
-  }
-
-  public void setEndDate(Date endDate) {
-    this.endDate = endDate;
-  }
-
-  public Map<String, String> getFilters() {
-    return filters;
-  }
-
-  public void setFilters(Map<String, String> filters) {
-    this.filters = filters;
-  }
 }

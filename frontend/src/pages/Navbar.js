@@ -1,18 +1,44 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext"; // Ensure your AuthContext is set up correctly
 import '../styles/Navbar.css';
 
-const Navbar =()=>{
-    return(
+const Navbar = () => {
+    const { token, user } = useContext(AuthContext);
+    const userRole = user ? user.role : null; // Assume user has a "role" property
+
+    return (
         <>
             <nav className="header">
-                <div className = "header-left">
+                <div className="header-left">
                     <span role="img" aria-label="search">🔍</span>
-                    <Link to="/register" className="header-item"> Become a Member</Link>
                 </div>
                 <div className="header-center">
                     <Link to="/" className="header-item">Home</Link>
-                    <Link to="/login" className="header-item">Login</Link>
+
+                    {/* Conditionally render Login or My Account based on token */}
+                    {!token ? (
+                        <Link to="/login" className="header-item">Login</Link>
+                    ) : (
+                        <Link to="/MyAccountPage" className="header-item">My Account</Link>
+                    )}
+
+                    {/* Optionally, show additional role-based links */}
+                    {token && userRole === "TREASURER" && (
+                        <>
+                            <Link to="/treasurer" className="header-item">Treasurer Dashboard</Link>
+                            <Link to="/treasurer/transactions" className="header-item">Transactions</Link>
+                        </>
+                    )}
+
+                    {token && userRole === "ADMIN" && (
+                        <>
+                            <Link to="/admin" className="header-item">Admin Dashboard</Link>
+                            <Link to="/admin/users" className="header-item">User Management</Link>
+                            <Link to="/admin/assign-role" className="header-item">Assign Roles</Link>
+                        </>
+                    )}
+
                     <Link to="/events" className="header-item">Events</Link>
                     <Link to="/reserve" className="header-item">Reserve Court</Link>
                     <Link to="/about" className="header-item">About Us</Link>
@@ -24,11 +50,11 @@ const Navbar =()=>{
             </nav>
 
             <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} CS460 Tennis. Al rights reserved. </p>
-                <p> Contact Us: <a href="kurinaah@hartford.edu"> info@tennisclub.com </a> </p>
+                <p>&copy; {new Date().getFullYear()} CS460 Tennis. All rights reserved.</p>
+                <p>Contact Us: <a href="mailto:info@tennisclub.com">info@tennisclub.com</a></p>
             </footer>
-        </>    
+        </>
     );
-}
+};
 
 export default Navbar;

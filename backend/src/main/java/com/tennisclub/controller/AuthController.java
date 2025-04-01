@@ -1,7 +1,7 @@
 package com.tennisclub.controller;
 
+import com.tennisclub.dto.LoginRequest;
 import com.tennisclub.model.JWTToken;
-import com.tennisclub.model.User;
 import com.tennisclub.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,10 @@ public class AuthController {
   private AuthService authService;
 
   @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody User loginRequest) {
+  public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     try {
-      JWTToken token = authService.login(loginRequest.getUsername(), loginRequest.getPasswordHash());
+      // Use getPassword() to retrieve the raw password
+      JWTToken token = authService.login(loginRequest.getUsername(), loginRequest.getPassword());
       return ResponseEntity.ok(token);
     } catch (Exception e) {
       return ResponseEntity.badRequest().body("Login failed: " + e.getMessage());
@@ -34,4 +35,3 @@ public class AuthController {
     }
   }
 }
-

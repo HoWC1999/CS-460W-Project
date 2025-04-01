@@ -1,12 +1,18 @@
 package com.tennisclub.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "events")
 public class Event {
 
+  // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int eventId;
@@ -44,52 +50,4 @@ public class Event {
     return eventDate.after(new Date());
   }
 
-  // Getters and setters
-  public int getEventId() {
-    return eventId;
-  }
-
-  public void setEventId(int eventId) {
-    this.eventId = eventId;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public Date getEventDate() {
-    return eventDate;
-  }
-
-  public void setEventDate(Date eventDate) {
-    this.eventDate = eventDate;
-  }
-
-  public Date getEventTime() {
-    return eventTime;
-  }
-
-  public void setEventTime(Date eventTime) {
-    this.eventTime = eventTime;
-  }
-
-  public String getLocation() {
-    return location;
-  }
-
-  public void setLocation(String location) {
-    this.location = location;
-  }
 }

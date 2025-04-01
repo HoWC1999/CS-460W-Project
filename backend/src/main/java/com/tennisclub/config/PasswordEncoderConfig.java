@@ -10,6 +10,9 @@ public class PasswordEncoderConfig {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    String hashedPassword = encoder.encode("password123");
+    System.out.println("Hashed password: " + hashedPassword);
+    return encoder;
   }
 }

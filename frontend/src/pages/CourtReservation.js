@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/CourtReservation.css';
+import { createReservation } from '../services/reservationService';
 
 const CourtReservation = () => {
     const [formData, setFormData] = useState({
@@ -10,14 +11,31 @@ const CourtReservation = () => {
         time: ''
     });
 
+    const [message, setMessage] = useState('');
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-    // Placeholder for API call
-        alert(`Court ${formData.court} reserved on ${formData.date} at ${formData.time}`);
+        try {
+            // Prepare the payload; adjust field names as expected by your backend API.
+            const reservationData = {
+                name: formData.name,
+                email: formData.email,
+                court: parseInt(formData.court, 10),
+                date: formData.date,
+                time: formData.time
+            };
+
+            // Call the reservation service to create a reservation
+            const response = await createReservation(reservationData);
+            setMessage(`Reservation successful! Court ${response.court} reserved on ${response.reservationDate} at ${response.startTime}.`);
+        } catch (error) {
+            setMessage(`Reservation failed: ${error}`);
+            console.error("Reservation error:", error);
+        }
     };
 
     return (

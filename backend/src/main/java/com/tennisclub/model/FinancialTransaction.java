@@ -2,14 +2,19 @@ package com.tennisclub.model;
 
 import com.tennisclub.model.enums.TransactionStatus;
 import com.tennisclub.model.enums.TransactionType;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "financial_transactions")
 public class FinancialTransaction {
 
+  // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int transactionId;
@@ -76,53 +81,5 @@ public class FinancialTransaction {
     return false;
   }
 
-  // Getters and setters
-  public int getTransactionId() {
-    return transactionId;
-  }
-
-  public void setTransactionId(int transactionId) {
-    this.transactionId = transactionId;
-  }
-
-  public double getAmount() {
-    return amount;
-  }
-
-  public void setAmount(double amount) {
-    this.amount = amount;
-  }
-
-  public Date getTransactionDate() {
-    return transactionDate;
-  }
-
-  public void setTransactionDate(Date transactionDate) {
-    this.transactionDate = transactionDate;
-  }
-
-  public TransactionType getTransactionType() {
-    return transactionType;
-  }
-
-  public void setTransactionType(TransactionType transactionType) {
-    this.transactionType = transactionType;
-  }
-
-  public TransactionStatus getStatus() {
-    return status;
-  }
-
-  public void setStatus(TransactionStatus status) {
-    this.status = status;
-  }
-
-  public User getBelongsTo() {
-    return belongsTo;
-  }
-
-  public void setBelongsTo(User belongsTo) {
-    this.belongsTo = belongsTo;
-  }
 }
 

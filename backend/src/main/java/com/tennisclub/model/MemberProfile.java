@@ -1,11 +1,17 @@
 package com.tennisclub.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "member_profiles")
 public class MemberProfile {
 
+  // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int profileId;
@@ -40,45 +46,5 @@ public class MemberProfile {
     return false;
   }
 
-  // Getters and setters
-  public int getProfileId() {
-    return profileId;
-  }
-
-  public void setProfileId(int profileId) {
-    this.profileId = profileId;
-  }
-
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  public String getAddress() {
-    return address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-  public int getGuestPassesRemaining() {
-    return guestPassesRemaining;
-  }
-
-  public void setGuestPassesRemaining(int guestPassesRemaining) {
-    this.guestPassesRemaining = guestPassesRemaining;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
 }
 
