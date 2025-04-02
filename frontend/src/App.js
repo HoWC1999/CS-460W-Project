@@ -16,6 +16,7 @@ import UpdateProfilePage from './pages/account/UpdateProfilePage';
 // Treasurer Pages
 import TreasurerDashboard from './pages/TreasurerDashboard';
 import FinancialTransactionsPage from './pages/FinancialTransactionPage';
+import TreasurerBillingManagementPage from './pages/TreasurerBillingManagement';
 
 // Admin Pages
 import AdminDashboard from './pages/AdminDashboard';
@@ -44,13 +45,18 @@ function App() {
 
                     {/* Treasurer Routes */}
                     <Route path="/treasurer" element={
-                        <ProtectedRoute allowedRoles={['TREASURER']}>
+                        <ProtectedRoute allowedRoles={['TREASURER', 'ADMIN']}>
                             <TreasurerDashboard />
                         </ProtectedRoute>
                     } />
                     <Route path="/treasurer/transactions" element={
-                        <ProtectedRoute allowedRoles={['TREASURER']}>
+                        <ProtectedRoute allowedRoles={['TREASURER', 'ADMIN']}>
                             <FinancialTransactionsPage />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/treasurer/billing" element={
+                        <ProtectedRoute allowedRoles={['TREASURER', 'ADMIN']}>
+                            <TreasurerBillingManagementPage />
                         </ProtectedRoute>
                     } />
 

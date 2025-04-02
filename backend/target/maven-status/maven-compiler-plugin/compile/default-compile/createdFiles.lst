@@ -17,6 +17,7 @@ com\tennisclub\config\SecurityConfig$1.class
 com\tennisclub\controller\AuthController.class
 com\tennisclub\service\EventService.class
 com\tennisclub\model\CourtReservation.class
+com\tennisclub\service\BillingService.class
 com\tennisclub\model\enums\Role.class
 com\tennisclub\model\JWTToken.class
 com\tennisclub\model\enums\TransactionStatus.class
@@ -37,10 +38,13 @@ com\tennisclub\config\SecurityConfig.class
 com\tennisclub\service\AuditService.class
 com\tennisclub\service\FinancialService.class
 com\tennisclub\model\Reconciliation.class
+com\tennisclub\model\BillingTransaction.class
 com\tennisclub\model\Event.class
 com\tennisclub\model\enums\Transaction.class
 com\tennisclub\model\PaymentDetails.class
 com\tennisclub\repository\FinancialTransactionRepository.class
+com\tennisclub\repository\BillingTransactionRepository.class
+com\tennisclub\controller\BillingController.class
 com\tennisclub\dto\UpdateUserDTO.class
 com\tennisclub\controller\UserController.class
 com\tennisclub\controller\FinancialTransactionController.class

@@ -10,6 +10,7 @@ const TreasurerDashboard = () => {
                 <li><Link to="/treasurer/transactions">Manage Financial Transactions</Link></li>
                 <li><Link to="/treasurer/refunds">Process Refunds</Link></li>
                 <li><Link to="/treasurer/reports">Generate Reports</Link></li>
+                <li><Link to ="/treasurer/billing">Billing Management</Link></li>
             </ul>
         </div>
     );
