@@ -14,6 +14,7 @@ com\tennisclub\repository\CourtRepository.class
 com\tennisclub\repository\EventRepository.class
 com\tennisclub\service\AuthService.class
 com\tennisclub\config\SecurityConfig$1.class
+com\tennisclub\model\enums\Events.class
 com\tennisclub\controller\AuthController.class
 com\tennisclub\service\EventService.class
 com\tennisclub\model\CourtReservation.class
@@ -25,8 +26,8 @@ com\tennisclub\exception\CustomException.class
 com\tennisclub\dto\CourtReservationDTO.class
 com\tennisclub\util\JwtUtil.class
 com\tennisclub\config\WebMvcConfig$1.class
+com\tennisclub\model\Events.class
 com\tennisclub\config\PasswordEncoderConfig.class
-com\tennisclub\controller\FinancialController.class
 com\tennisclub\dto\RegisterRequest.class
 com\tennisclub\repository\FinancialReportRepository.class
 com\tennisclub\config\WebMvcConfig.class
@@ -39,7 +40,6 @@ com\tennisclub\service\AuditService.class
 com\tennisclub\service\FinancialService.class
 com\tennisclub\model\Reconciliation.class
 com\tennisclub\model\BillingTransaction.class
-com\tennisclub\model\Event.class
 com\tennisclub\model\enums\Transaction.class
 com\tennisclub\model\PaymentDetails.class
 com\tennisclub\repository\FinancialTransactionRepository.class
@@ -55,6 +55,7 @@ com\tennisclub\model\MemberProfile.class
 com\tennisclub\config\DataSourceConfig.class
 com\tennisclub\service\ReservationService.class
 com\tennisclub\service\UserService.class
+com\tennisclub\dto\RoleAssignmentDTO.class
 com\tennisclub\model\Court.class
 com\tennisclub\controller\EventController.class
 com\tennisclub\model\PaymentDispute.class

@@ -1,4 +1,4 @@
-// src/pages/admin/UserManagementPage.js
+// src/pages/admin/UserManagementPage.jsx
 import React, { useEffect, useState } from 'react';
 import { getAllUsers, deleteUser } from '../services/adminService';
 
@@ -37,7 +37,7 @@ const UserManagementPage = () => {
             <ul>
                 {users.map(user => (
                     <li key={user.userId}>
-                        {user.username} ({user.email})
+                        {user.username} | ({user.role}) | ({user.email}) ||
                         <button onClick={() => handleDelete(user.userId)}>Delete</button>
                     </li>
                 ))}

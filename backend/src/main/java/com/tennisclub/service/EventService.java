@@ -1,6 +1,6 @@
 package com.tennisclub.service;
 
-import com.tennisclub.model.Event;
+import com.tennisclub.model.Events;
 import com.tennisclub.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ public class EventService {
   @Autowired
   private EventRepository eventRepository;
 
-  public Event createEvent(Event event) {
+  public Events createEvent(Events event) {
     if(event.getTitle() == null || event.getTitle().isEmpty()) {
       throw new RuntimeException("Event title is required");
     }
@@ -20,12 +20,12 @@ public class EventService {
     return eventRepository.save(event);
   }
 
-  public Event updateEvent(int eventId, Event newEventData) {
-    Optional<Event> optionalEvent = eventRepository.findById(eventId);
+  public Events updateEvent(int eventId, Events newEventData) {
+    Optional<Events> optionalEvent = eventRepository.findById(eventId);
     if(!optionalEvent.isPresent()) {
       throw new RuntimeException("Event not found");
     }
-    Event event = optionalEvent.get();
+    Events event = optionalEvent.get();
     if(newEventData.getTitle() != null) {
       event.setTitle(newEventData.getTitle());
     }
@@ -52,7 +52,7 @@ public class EventService {
     return true;
   }
 
-  public Event getEventById(int eventId) {
+  public Events getEventById(int eventId) {
     return eventRepository.findById(eventId)
       .orElseThrow(() -> new RuntimeException("Event not found"));
   }

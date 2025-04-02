@@ -8,6 +8,7 @@ import Navbar from './pages/Navbar';
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import RefundPage from "./pages/RefundPage";
+import Events from "./pages/Events";
 
 // Account Management Pages
 import MyAccountPage from './pages/account/MyAccountPage';
@@ -15,7 +16,6 @@ import UpdateProfilePage from './pages/account/UpdateProfilePage';
 import MemberBillingPage from './pages/MemberBillingPage'
 // Treasurer Pages
 import TreasurerDashboard from './pages/TreasurerDashboard';
-import FinancialTransactionsPage from './pages/FinancialTransactionPage';
 import TreasurerBillingManagementPage from './pages/TreasurerBillingManagement';
 
 // Admin Pages
@@ -24,12 +24,17 @@ import UserManagementPage from './pages/UserManagementPage';
 import AssignRolePage from './pages/AssignRolePage';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import ForceRefreshOnRouteChange from './components/ForceRefreshOnRouteChange';
 import './App.css';
+
+
+
 
 function App() {
     return (
         <div className="app-layout">
             <Router>
+
                 <Navbar />
                 <Routes>
                     {/* Core Routes */}
@@ -37,7 +42,8 @@ function App() {
                     <Route path="/reserve" element={<CourtReservation />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/refund" element={<RefundPage />} />
+                    <Route path="/Events" element={<Events />} />
+
 
                     {/* Account Management */}
                     <Route path="/account/MyAccountPage" element={<MyAccountPage />} />
@@ -50,18 +56,20 @@ function App() {
                             <TreasurerDashboard />
                         </ProtectedRoute>
                     } />
-                    <Route path="/treasurer/transactions" element={
-                        <ProtectedRoute allowedRoles={['TREASURER', 'ADMIN']}>
-                            <FinancialTransactionsPage />
-                        </ProtectedRoute>
-                    } />
+
                     <Route path="/treasurer/billing" element={
                         <ProtectedRoute allowedRoles={['TREASURER', 'ADMIN']}>
                             <TreasurerBillingManagementPage />
                         </ProtectedRoute>
                     } />
+                    <Route path="/treasurer/refunds" element={
+                      <ProtectedRoute allowedRoles={['TREASURER', 'ADMIN']}>
+                        <RefundPage />
+                      </ProtectedRoute>
+                    } />
 
-                    {/* Admin Routes */}
+
+                  {/* Admin Routes */}
                     <Route path="/admin" element={
                         <ProtectedRoute allowedRoles={['ADMIN']}>
                             <AdminDashboard />

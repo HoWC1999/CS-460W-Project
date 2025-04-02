@@ -1,13 +1,14 @@
 package com.tennisclub.controller;
 
 import com.tennisclub.model.FinancialTransaction;
-import com.tennisclub.repository.FinancialTransactionRepository;
+import com.tennisclub.service.FinancialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -17,17 +18,85 @@ public class FinancialTransactionController {
   private static final Logger logger = LoggerFactory.getLogger(FinancialTransactionController.class);
 
   @Autowired
-  private FinancialTransactionRepository transactionRepository;
+  private FinancialService financialService;
 
-  @GetMapping("/transactions")
-  public ResponseEntity<?> getAllTransactions() {
+  @PostMapping("/transaction")
+  public ResponseEntity<?> processTransaction(@RequestBody FinancialTransaction transaction) {
     try {
-      List<FinancialTransaction> transactions = transactionRepository.findAll();
-      logger.info("Fetched {} transactions", transactions.size());
-      return ResponseEntity.ok(transactions);
+      FinancialTransaction processed = financialService.processTransaction(transaction);
+      return ResponseEntity.ok(processed);
     } catch (Exception e) {
-      logger.error("Error fetching transactions: {}", e.getMessage(), e);
-      return ResponseEntity.status(500).body("Error fetching transactions: " + e.getMessage());
+      logger.error("Error processing transaction: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error processing transaction: " + e.getMessage());
     }
   }
+
+  @PostMapping("/refund")
+  public ResponseEntity<?> processRefund(@RequestBody FinancialTransaction transaction) {
+    try {
+      FinancialTransaction processed = financialService.processRefund(transaction);
+      return ResponseEntity.ok(processed);
+    } catch (Exception e) {
+      logger.error("Error processing refund: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error processing refund: " + e.getMessage());
+    }
+  }
+
+  @PostMapping("/membership")
+  public ResponseEntity<?> chargeAnnualMembershipFee(@RequestParam int userId, @RequestParam BigDecimal amount) {
+    try {
+      FinancialTransaction transaction = financialService.chargeAnnualMembershipFee(userId, amount);
+      logger.info("Charged annual membership fee for userId {}: {}", userId, transaction);
+      return ResponseEntity.ok(transaction);
+    } catch (Exception e) {
+      logger.error("Error charging membership fee: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error charging membership fee: " + e.getMessage());
+    }
+  }
+
+  @PostMapping("/late")
+  public ResponseEntity<?> applyLateFee(@RequestParam int userId, @RequestParam BigDecimal baseAmount) {
+    try {
+      FinancialTransaction transaction = financialService.applyLateFee(userId, baseAmount);
+      logger.info("Applied late fee for userId {}: {}", userId, transaction);
+      return ResponseEntity.ok(transaction);
+    } catch (Exception e) {
+      logger.error("Error applying late fee: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error applying late fee: " + e.getMessage());
+    }
+  }
+
+  @GetMapping("/history")
+  public ResponseEntity<?> getBillingHistory(@RequestParam int userId) {
+    try {
+      List<FinancialTransaction> history = financialService.getAllBilling();
+      return ResponseEntity.ok(history);
+    } catch (Exception e) {
+      logger.error("Error fetching billing history: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error fetching billing history: " + e.getMessage());
+    }
+  }
+
+  @GetMapping("/all")
+  public ResponseEntity<?> getAllBilling() {
+    try {
+      List<FinancialTransaction> transactions = financialService.getAllBilling();
+      logger.info("Fetched {} billing records", transactions.size());
+      return ResponseEntity.ok(transactions);
+    } catch (Exception e) {
+      logger.error("Error fetching billing records: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error fetching billing records: " + e.getMessage());
+    }
+  }
+  @PostMapping("/pay/{id}")
+  public ResponseEntity<?> payBill(@PathVariable int id) {
+    try {
+      FinancialTransaction updatedTransaction = financialService.payBill(id);
+      return ResponseEntity.ok(updatedTransaction);
+    } catch (Exception e) {
+      logger.error("Error paying bill: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error paying bill: " + e.getMessage());
+    }
+  }
+
 }

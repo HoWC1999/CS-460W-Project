@@ -51,6 +51,7 @@ public class BillingService {
     return billingTransactionRepository.save(billing);
   }
 
+
   // Get billing history for a user
   public List<BillingTransaction> getBillingHistory(int userId) {
     return billingTransactionRepository.findByUser_UserId(userId);

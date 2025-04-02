@@ -12,13 +12,18 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "financial_transactions")
+@Table(name = "transactions")
 public class FinancialTransaction {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "transaction_id")
   private int transactionId;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", nullable = false)
+  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+  private User user;
 
   @Column(nullable = false, precision = 10, scale = 2)
   private BigDecimal amount;
@@ -27,15 +32,14 @@ public class FinancialTransaction {
   @Column(name = "transaction_date", nullable = false, columnDefinition = "datetime default CURRENT_TIMESTAMP")
   private Date transactionDate;
 
-  @Column(name = "transaction_type", nullable = false, length = 20)
+  @Column(name = "transaction_type", nullable = false, length = 50)
   private String transactionType;
 
-  @Enumerated(EnumType.STRING)
+  // We now store status as a string, but we map it to our enum
   @Column(nullable = false, length = 20)
+  @Enumerated(EnumType.STRING)
   private TransactionStatus status;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", nullable = false)
-  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-  private User user;
+  @Column(length = 255)
+  private String description;
 }

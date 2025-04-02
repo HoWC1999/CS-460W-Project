@@ -1,5 +1,6 @@
 package com.tennisclub.controller;
 
+import com.tennisclub.dto.RoleAssignmentDTO;
 import com.tennisclub.model.User;
 import com.tennisclub.service.UserService;
 import org.slf4j.Logger;
@@ -47,16 +48,16 @@ public class AdminController {
   }
 
   @PostMapping("/assignRole/{id}")
-  public ResponseEntity<?> assignRole(@PathVariable int id, @RequestParam String role) {
+  public ResponseEntity<?> assignRole(@PathVariable int id, @RequestBody RoleAssignmentDTO roleAssignmentDTO) {
     try {
-      boolean result = userService.assignRole(id, role);
-      if (result) {
+      boolean success = userService.assignRole(id, roleAssignmentDTO.getRole());
+      if (success) {
         return ResponseEntity.ok("Role assigned successfully.");
       } else {
-        return ResponseEntity.badRequest().body("Role assignment failed.");
+        return ResponseEntity.badRequest().body("Failed to assign role.");
       }
     } catch (Exception e) {
-      return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+      return ResponseEntity.badRequest().body("Error assigning role: " + e.getMessage());
     }
   }
 }
