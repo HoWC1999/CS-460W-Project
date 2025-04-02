@@ -1,8 +1,8 @@
 // src/pages/MemberBillingPage.js
 import React, { useEffect, useState, useContext } from 'react';
-import { getBillingHistory, payBill } from '../services/billingService';
+import { getBillingHistory, chargeAnnualMembershipFee } from '../services/billingService';
 import { AuthContext } from '../context/AuthContext';
-import './MemberBillingPage.css';
+
 
 const MemberBillingPage = () => {
     const [billingHistory, setBillingHistory] = useState([]);
@@ -23,16 +23,14 @@ const MemberBillingPage = () => {
         }
     }, [user]);
 
-    const handlePay = async (billingId) => {
+    const handleChargeMembership = async () => {
         try {
-            await payBill(billingId);
-            // Refresh billing history after payment
-            if (user && user.userId) {
-                const data = await getBillingHistory(user.userId);
-                setBillingHistory(data);
-            }
+            // For example, charge $400 as the annual membership fee.
+            await chargeAnnualMembershipFee(user.userId, 400.00);
+            const data = await getBillingHistory(user.userId);
+            setBillingHistory(data);
         } catch (err) {
-            setError('Payment failed.');
+            setError('Annual membership fee processing failed.');
         }
     };
 
@@ -40,6 +38,7 @@ const MemberBillingPage = () => {
         <div className="member-billing-container">
             <h2>My Billing</h2>
             {error && <p className="error">{error}</p>}
+            <button onClick={handleChargeMembership}>Pay Annual Membership Fee ($400)</button>
             {billingHistory.length === 0 ? (
                 <p>No billing records found.</p>
             ) : (
@@ -53,9 +52,6 @@ const MemberBillingPage = () => {
                                 <strong> Description:</strong> {bill.description} |
                                 <strong> Status:</strong> {bill.status}
                             </div>
-                            {bill.status !== 'PAID' && (
-                                <button onClick={() => handlePay(bill.billingId)}>Pay Bill</button>
-                            )}
                         </li>
                     ))}
                 </ul>

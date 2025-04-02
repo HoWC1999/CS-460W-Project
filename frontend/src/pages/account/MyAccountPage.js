@@ -58,7 +58,8 @@ const MyAccountPage = () => {
             <p><strong>Username:</strong> {profile.username}</p>
             <p><strong>Email:</strong> {profile.email}</p>
             <p><strong>Status:</strong> {profile.status}</p>
-            <Link to="/account/UpdateProfilePage">Update Profile</Link>
+            <p><Link to="/account/UpdateProfilePage">Update Profile</Link></p>
+            <p><Link to="/billing">Billing</Link></p>
             <br />
             <button onClick={handleLogout}>Logout</button>
 

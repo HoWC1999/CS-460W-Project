@@ -12,7 +12,7 @@ import RefundPage from "./pages/RefundPage";
 // Account Management Pages
 import MyAccountPage from './pages/account/MyAccountPage';
 import UpdateProfilePage from './pages/account/UpdateProfilePage';
-
+import MemberBillingPage from './pages/MemberBillingPage'
 // Treasurer Pages
 import TreasurerDashboard from './pages/TreasurerDashboard';
 import FinancialTransactionsPage from './pages/FinancialTransactionPage';
@@ -42,6 +42,7 @@ function App() {
                     {/* Account Management */}
                     <Route path="/account/MyAccountPage" element={<MyAccountPage />} />
                     <Route path="/account/UpdateProfilePage" element={<UpdateProfilePage />} />
+                    <Route path="/billing" element={<MemberBillingPage />} />
 
                     {/* Treasurer Routes */}
                     <Route path="/treasurer" element={
