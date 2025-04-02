@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -85,7 +86,7 @@ public class ReservationService {
    * @return list of reservations
    */
   public List<CourtReservation> getReservationsForUserId(int userId) {
-    User user = userRepository.findById(userId);
+    Optional<User> user = Optional.ofNullable(userRepository.findById(userId));
     return reservationRepository.findByBookedBy(user);
   }
 

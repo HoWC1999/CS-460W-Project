@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getMyProfile } from '../services/userService';
-import { getMyReservations } from '../services/reservationService';
-import { AuthContext } from '../context/AuthContext';
+import { getMyProfile } from '../../services/userService';
+import { getMyReservations } from '../../services/reservationService';
+import { AuthContext } from '../../context/AuthContext';
 
 const MyAccountPage = () => {
     const [profile, setProfile] = useState(null);
@@ -58,7 +58,7 @@ const MyAccountPage = () => {
             <p><strong>Username:</strong> {profile.username}</p>
             <p><strong>Email:</strong> {profile.email}</p>
             <p><strong>Status:</strong> {profile.status}</p>
-            <Link to="/account/update">Update Profile</Link>
+            <Link to="/account/UpdateProfilePage">Update Profile</Link>
             <br />
             <button onClick={handleLogout}>Logout</button>
 

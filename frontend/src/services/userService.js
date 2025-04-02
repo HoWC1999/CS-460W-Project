@@ -34,6 +34,8 @@ export const getMyProfile = async () => {
 };
 
 export const updateMyProfile = async (profileData) => {
+    console.log("updateMyProfile - sending payload:", profileData);
     const response = await api.put('/users/me', profileData);
+    console.log("updateMyProfile - received response:", response.data);
     return response.data;
 };

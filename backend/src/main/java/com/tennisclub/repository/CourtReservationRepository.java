@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CourtReservationRepository extends JpaRepository<CourtReservation, Integer> {
@@ -16,5 +17,5 @@ public interface CourtReservationRepository extends JpaRepository<CourtReservati
   // New method to find reservations for a given date and court
   List<CourtReservation> findByReservationDateAndCourtNumber(Date reservationDate, int courtNumber);
 
-  List<CourtReservation> findByBookedBy(User user);
+  List<CourtReservation> findByBookedBy(Optional<User> user);
 }

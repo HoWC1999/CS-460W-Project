@@ -20,13 +20,14 @@ const Navbar = () => {
                     {!token ? (
                         <Link to="/login" className="header-item">Login</Link>
                     ) : (
-                        <Link to="/MyAccountPage" className="header-item">My Account</Link>
+                        <Link to="/account/MyAccountPage" className="header-item">My Account</Link>
                     )}
-
+                    <Link to="/events" className="header-item">Events</Link>
+                    <Link to="/reserve" className="header-item">Reserve Court</Link>
                     {/* Optionally, show additional role-based links */}
                     {token && userRole === "TREASURER" && (
                         <>
-                            <Link to="/treasurer" className="header-item">Treasurer Dashboard</Link>
+                            <Link to="/TreasurerDashboard" className="header-item">Treasurer Dashboard</Link>
                             <Link to="/treasurer/transactions" className="header-item">Transactions</Link>
                         </>
                     )}
@@ -39,8 +40,6 @@ const Navbar = () => {
                         </>
                     )}
 
-                    <Link to="/events" className="header-item">Events</Link>
-                    <Link to="/reserve" className="header-item">Reserve Court</Link>
                     <Link to="/about" className="header-item">About Us</Link>
                 </div>
                 <div className="header-right">

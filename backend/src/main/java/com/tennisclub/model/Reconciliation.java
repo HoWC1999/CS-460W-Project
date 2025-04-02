@@ -81,15 +81,15 @@ public class Reconciliation {
 
   // Helper method to determine if two transactions match within tolerance
   private boolean matches(FinancialTransaction t1, FinancialTransaction t2, double tolerance) {
-    if (t1.getTransactionType() != t2.getTransactionType()) {
+    // Compare transaction types (if they are enums, == is safe; if strings, use equals)
+    if (!t1.getTransactionType().equals(t2.getTransactionType())) {
       return false;
     }
-    if (Math.abs(t1.getAmount() - t2.getAmount()) > tolerance) {
+    // Compare amounts using BigDecimal arithmetic
+    if (t1.getAmount().subtract(t2.getAmount()).abs().doubleValue() > tolerance) {
       return false;
     }
-    // Here, we check date equality by comparing the date parts.
-    // Depending on your needs, you may wish to allow a small window (e.g., same day).
-    // For simplicity, we compare full Date objects.
+    // Compare the transaction dates (this compares the full Date objects)
     if (!t1.getTransactionDate().equals(t2.getTransactionDate())) {
       return false;
     }

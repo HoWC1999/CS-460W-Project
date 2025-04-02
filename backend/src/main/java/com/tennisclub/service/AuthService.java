@@ -32,7 +32,7 @@ public class AuthService {
       throw new RuntimeException("Invalid password");
     }
     // Generate JWT token with 1 hour expiry
-    String token = jwtUtil.generateToken(user.getUsername());
+    String token = jwtUtil.generateToken(user.getUsername(), String.valueOf(user.getRole()));
     return new JWTToken(token, new Date(System.currentTimeMillis() + 3600000));
   }
 

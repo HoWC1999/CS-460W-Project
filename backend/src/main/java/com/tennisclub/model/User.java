@@ -33,6 +33,15 @@ public class User {
   @Column(nullable = false)
   private String status; // e.g., "Active", "Terminated"
 
+  @Column(nullable = true)
+  private String phoneNumber;
+
+  @Column(nullable = true)
+  private String address;
+
+  @Column(nullable = true)
+  private String fullName;
+
   // Constructors
   public User() {
   }
@@ -44,5 +53,6 @@ public class User {
     this.role = role;
     this.status = status;
   }
+
 
 }

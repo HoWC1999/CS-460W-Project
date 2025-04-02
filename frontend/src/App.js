@@ -10,8 +10,8 @@ import RegisterPage from "./pages/RegisterPage";
 import RefundPage from "./pages/RefundPage";
 
 // Account Management Pages
-import MyAccountPage from './pages/MyAccountPage';
-import UpdateProfilePage from './pages/UpdateProfilePage';
+import MyAccountPage from './pages/account/MyAccountPage';
+import UpdateProfilePage from './pages/account/UpdateProfilePage';
 
 // Treasurer Pages
 import TreasurerDashboard from './pages/TreasurerDashboard';
@@ -22,6 +22,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import UserManagementPage from './pages/UserManagementPage';
 import AssignRolePage from './pages/AssignRolePage';
 
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
 function App() {
@@ -38,17 +39,37 @@ function App() {
                     <Route path="/refund" element={<RefundPage />} />
 
                     {/* Account Management */}
-                    <Route path="/MyAccountPage" element={<MyAccountPage />} />
-                    <Route path="/UpdateProfilePage" element={<UpdateProfilePage />} />
+                    <Route path="/account/MyAccountPage" element={<MyAccountPage />} />
+                    <Route path="/account/UpdateProfilePage" element={<UpdateProfilePage />} />
 
                     {/* Treasurer Routes */}
-                    <Route path="/treasurer" element={<TreasurerDashboard />} />
-                    <Route path="/treasurer/transactions" element={<FinancialTransactionsPage />} />
+                    <Route path="/treasurer" element={
+                        <ProtectedRoute allowedRoles={['TREASURER']}>
+                            <TreasurerDashboard />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/treasurer/transactions" element={
+                        <ProtectedRoute allowedRoles={['TREASURER']}>
+                            <FinancialTransactionsPage />
+                        </ProtectedRoute>
+                    } />
 
                     {/* Admin Routes */}
-                    <Route path="/admin" element={<AdminDashboard />} />
-                    <Route path="/admin/users" element={<UserManagementPage />} />
-                    <Route path="/admin/assign-role" element={<AssignRolePage />} />
+                    <Route path="/admin" element={
+                        <ProtectedRoute allowedRoles={['ADMIN']}>
+                            <AdminDashboard />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/users" element={
+                        <ProtectedRoute allowedRoles={['ADMIN']}>
+                            <UserManagementPage />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/assign-role" element={
+                        <ProtectedRoute allowedRoles={['ADMIN']}>
+                            <AssignRolePage />
+                        </ProtectedRoute>
+                    } />
                 </Routes>
             </Router>
         </div>

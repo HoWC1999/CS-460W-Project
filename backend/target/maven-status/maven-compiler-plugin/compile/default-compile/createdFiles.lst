@@ -38,10 +38,12 @@ com\tennisclub\service\AuditService.class
 com\tennisclub\service\FinancialService.class
 com\tennisclub\model\Reconciliation.class
 com\tennisclub\model\Event.class
+com\tennisclub\model\enums\Transaction.class
 com\tennisclub\model\PaymentDetails.class
 com\tennisclub\repository\FinancialTransactionRepository.class
 com\tennisclub\dto\UpdateUserDTO.class
 com\tennisclub\controller\UserController.class
+com\tennisclub\controller\FinancialTransactionController.class
 com\tennisclub\model\enums\TransactionType.class
 com\tennisclub\controller\AdminController.class
 com\tennisclub\dto\LoginRequest.class

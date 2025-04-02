@@ -7,6 +7,7 @@ import com.tennisclub.repository.FinancialReportRepository;
 import com.tennisclub.repository.FinancialTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -21,19 +22,20 @@ public class FinancialService {
 
   // Process a payment transaction
   public FinancialTransaction processTransaction(FinancialTransaction transaction) {
-    if(transaction.getAmount() <= 0) {
+    // Check if amount is less than or equal to zero using compareTo
+    if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
       throw new RuntimeException("Transaction amount must be greater than zero");
     }
     transaction.setStatus(TransactionStatus.PENDING);
     // Here you would integrate with a payment gateway.
-    // For this example, we assume processing is successful.
+    // For this example, processing is assumed to be successful.
     transaction.setStatus(TransactionStatus.SUCCESS);
     return transactionRepository.save(transaction);
   }
 
   // Process a refund transaction
   public FinancialTransaction processRefund(FinancialTransaction transaction) {
-    if(transaction.getAmount() <= 0) {
+    if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
       throw new RuntimeException("Refund amount must be greater than zero");
     }
     // In a real-world scenario, verify refund conditions here.
@@ -47,7 +49,7 @@ public class FinancialService {
     StringBuilder report = new StringBuilder();
     report.append("TransactionId,Amount,Date,Type,Status\n");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    for(FinancialTransaction ft : transactions){
+    for (FinancialTransaction ft : transactions) {
       report.append(ft.getTransactionId()).append(",")
         .append(ft.getAmount()).append(",")
         .append(sdf.format(ft.getTransactionDate())).append(",")

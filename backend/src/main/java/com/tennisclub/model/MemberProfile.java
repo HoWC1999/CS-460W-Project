@@ -37,14 +37,4 @@ public class MemberProfile {
     this.user = user;
   }
 
-  // Business Logic: Deduct a guest pass (if available)
-  public boolean deductGuestPass() {
-    if (guestPassesRemaining > 0) {
-      guestPassesRemaining--;
-      return true;
-    }
-    return false;
-  }
-
 }
-

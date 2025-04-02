@@ -23,13 +23,16 @@ public class JwtUtil {
    * @param username the username to set as the subject in the token
    * @return a signed JWT token as a String
    */
-  public String generateToken(String username) {
-    return Jwts.builder().subject(username)
-      .issuedAt(new Date())
-      .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // Set expiration time
-      .signWith(key) // Sign the JWT using the generated key
-      .compact(); // Build and serialize the JWT to a compact, URL-safe string
+  public String generateToken(String username, String role) {
+    return Jwts.builder()
+      .setSubject(username)
+      .claim("role", role) // add role as a claim
+      .setIssuedAt(new Date())
+      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+      .signWith(key, SignatureAlgorithm.HS512)
+      .compact();
   }
+
 
   /**
    * Validates the provided JWT token and extracts the subject (username).
