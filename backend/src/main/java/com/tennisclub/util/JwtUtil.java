@@ -25,10 +25,8 @@ public class JwtUtil {
    */
   public String generateToken(String username, String role) {
     return Jwts.builder()
-      .setSubject(username)
-      .claim("role", role) // add role as a claim
-      .setIssuedAt(new Date())
-      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+      .subject(username)
+      .claim("role", role)// add role as a claim
       .signWith(key, SignatureAlgorithm.HS512)
       .compact();
   }

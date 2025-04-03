@@ -2,9 +2,11 @@ package com.tennisclub.service;
 
 import com.tennisclub.model.FinancialReport;
 import com.tennisclub.model.FinancialTransaction;
+import com.tennisclub.model.User;
 import com.tennisclub.model.enums.TransactionStatus;
 import com.tennisclub.repository.FinancialReportRepository;
 import com.tennisclub.repository.FinancialTransactionRepository;
+import com.tennisclub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,12 @@ import java.util.Optional;
 public class FinancialService {
 
   @Autowired
-  private FinancialTransactionRepository transactionRepository;
+  private UserRepository userRepository;
 
   @Autowired
   private FinancialReportRepository reportRepository;
+  @Autowired
+  private FinancialTransactionRepository financialTransactionRepository;
 
   // Process a payment or billing transaction
   public FinancialTransaction processTransaction(FinancialTransaction transaction) {
@@ -31,7 +35,7 @@ public class FinancialService {
     transaction.setStatus(TransactionStatus.PENDING);
     // Simulate processing...
     transaction.setStatus(TransactionStatus.SUCCESS);
-    return transactionRepository.save(transaction);
+    return financialTransactionRepository.save(transaction);
   }
 
   // Process a refund transaction
@@ -40,7 +44,7 @@ public class FinancialService {
       throw new RuntimeException("Refund amount must be greater than zero");
     }
     transaction.setStatus(TransactionStatus.SUCCESS);
-    return transactionRepository.save(transaction);
+    return financialTransactionRepository.save(transaction);
   }
 
   // Charge the annual membership fee
@@ -53,7 +57,7 @@ public class FinancialService {
     transaction.setStatus(TransactionStatus.SUCCESS);
     transaction.setDescription("Annual membership fee");
     transaction.setTransactionDate(new Date());
-    return transactionRepository.save(transaction);
+    return financialTransactionRepository.save(transaction);
   }
 
   // Apply a late fee (10% of the base amount)
@@ -67,12 +71,12 @@ public class FinancialService {
     transaction.setStatus(TransactionStatus.SUCCESS);
     transaction.setDescription("Late payment fee");
     transaction.setTransactionDate(new Date());
-    return transactionRepository.save(transaction);
+    return financialTransactionRepository.save(transaction);
   }
 
   // Generate a CSV report of all transactions
   public String generateReport() {
-    List<FinancialTransaction> transactions = transactionRepository.findAll();
+    List<FinancialTransaction> transactions = financialTransactionRepository.findAll();
     StringBuilder report = new StringBuilder();
     report.append("TransactionId,Amount,Date,Type,Status\n");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -89,7 +93,7 @@ public class FinancialService {
     return report.toString();
   }
   public FinancialTransaction payBill(int transactionId) {
-    Optional<FinancialTransaction> optionalTransaction = transactionRepository.findById(transactionId);
+    Optional<FinancialTransaction> optionalTransaction = financialTransactionRepository.findById(transactionId);
     if (optionalTransaction.isEmpty()) {
       throw new RuntimeException("Billing record not found");
     }
@@ -100,7 +104,7 @@ public class FinancialService {
     }
     // Mark the billing record as paid.
     transaction.setStatus(TransactionStatus.SUCCESS);
-    return transactionRepository.save(transaction);
+    return financialTransactionRepository.save(transaction);
   }
 
 
@@ -111,6 +115,22 @@ public class FinancialService {
 
   // Get all transactions
   public List<FinancialTransaction> getAllBilling() {
-    return transactionRepository.findAll();
+    return financialTransactionRepository.findAll();
   }
+
+  public List<FinancialTransaction> getBillingForUser(int userId) {
+    return financialTransactionRepository.findByUser_UserId(userId);
+  }
+  // FinancialService.java
+  public List<FinancialTransaction> getBillingHistory(int userId) {
+    // Use the injected userRepository to fetch the User entity
+    User user = userRepository.findById(userId);
+    if (user == null) {
+      throw new RuntimeException("User not found");
+    }
+
+    return financialTransactionRepository.findByUser_UserId(userId);
+  }
+
+
 }

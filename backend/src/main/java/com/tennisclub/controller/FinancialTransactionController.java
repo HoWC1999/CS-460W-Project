@@ -43,10 +43,10 @@ public class FinancialTransactionController {
   }
 
   @PostMapping("/membership")
-  public ResponseEntity<?> chargeAnnualMembershipFee(@RequestParam int userId, @RequestParam BigDecimal amount) {
+  public ResponseEntity<?> chargeAnnualMembershipFee(@RequestParam int user, @RequestParam BigDecimal amount) {
     try {
-      FinancialTransaction transaction = financialService.chargeAnnualMembershipFee(userId, amount);
-      logger.info("Charged annual membership fee for userId {}: {}", userId, transaction);
+      FinancialTransaction transaction = financialService.chargeAnnualMembershipFee(user, amount);
+      logger.info("Charged annual membership fee for user {}: {}", user, transaction);
       return ResponseEntity.ok(transaction);
     } catch (Exception e) {
       logger.error("Error charging membership fee: {}", e.getMessage());
@@ -55,10 +55,10 @@ public class FinancialTransactionController {
   }
 
   @PostMapping("/late")
-  public ResponseEntity<?> applyLateFee(@RequestParam int userId, @RequestParam BigDecimal baseAmount) {
+  public ResponseEntity<?> applyLateFee(@RequestParam int user, @RequestParam BigDecimal baseAmount) {
     try {
-      FinancialTransaction transaction = financialService.applyLateFee(userId, baseAmount);
-      logger.info("Applied late fee for userId {}: {}", userId, transaction);
+      FinancialTransaction transaction = financialService.applyLateFee(user, baseAmount);
+      logger.info("Applied late fee for user {}: {}", user, transaction);
       return ResponseEntity.ok(transaction);
     } catch (Exception e) {
       logger.error("Error applying late fee: {}", e.getMessage());
@@ -69,7 +69,7 @@ public class FinancialTransactionController {
   @GetMapping("/history")
   public ResponseEntity<?> getBillingHistory(@RequestParam int userId) {
     try {
-      List<FinancialTransaction> history = financialService.getAllBilling();
+      List<FinancialTransaction> history = financialService.getBillingHistory(userId);
       return ResponseEntity.ok(history);
     } catch (Exception e) {
       logger.error("Error fetching billing history: {}", e.getMessage());

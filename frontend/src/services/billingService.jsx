@@ -1,4 +1,4 @@
-// src/services/billingService.js
+// src/services/billingService.jsx
 import api from './api';
 
 export const getBillingHistory = async (userId) => {
@@ -37,12 +37,22 @@ export const applyLateFee = async (userId, baseAmount) => {
   }
 };
 
-export const payBill = async (billingId) => {
+// payBill accepts an optional paymentMethod parameter (e.g. "CARD" or "CASH")
+export const payBill = async (billingId, paymentMethod = "CASH") => {
   try {
-    const response = await api.post(`/financial/pay/${billingId}`);
+    const response = await api.post(`/financial/pay/${billingId}`, null, { params: { paymentMethod } });
     return response.data;
   } catch (error) {
     throw error.response?.data || 'Bill payment failed';
   }
 };
 
+// processCardPayment calls the backend endpoint dedicated to card payments (using Stripe)
+export const processCardPayment = async (billingId, paymentMethodId) => {
+  try {
+    const response = await api.post(`/financial/cardPayment/${billingId}`, null, { params: { paymentMethodId } });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || 'Card payment failed';
+  }
+};
