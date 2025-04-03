@@ -1,25 +1,27 @@
 // src/pages/PaymentPage.jsx
-import React, { useContext } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import PaymentForm from '../components/PaymentForm';
-import { processCardPayment } from '../services/billingService';
-import { AuthContext } from '../context/AuthContext';
+import React, { useContext } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentForm from "../components/PaymentForm";
+import { processCardPayment } from "../services/billingService";
+import { AuthContext } from "../context/AuthContext";
+import { useParams } from "react-router-dom";
 
-// Load your Stripe publishable key (test mode)
 const stripePromise = loadStripe("pk_test_yourPublishableKey");
 
-const PaymentPage = ({ billingId }) => {
+const PaymentPage = () => {
+  // Assuming the billingId is passed as a URL parameter
+  const { billingId } = useParams();
   const { user } = useContext(AuthContext);
 
-  const handlePaymentSuccess = async (paymentMethodId) => {
+  const handlePaymentSuccess = async (stripePaymentMethodId) => {
     try {
-      // Call backend to process the card payment using the paymentMethodId.
-      const response = await processCardPayment(billingId, paymentMethodId);
+      // Call the dedicated endpoint with the billingId and the Stripe token (paymentMethodId)
+      const response = await processCardPayment(billingId, stripePaymentMethodId);
       console.log("Payment processed successfully:", response);
-      // Optionally, refresh billing history or show a success message.
+      // Optionally, you can redirect the user or display a success message here.
     } catch (error) {
-      console.error("Payment processing failed:", error);
+      console.error("Card payment failed:", error);
     }
   };
 

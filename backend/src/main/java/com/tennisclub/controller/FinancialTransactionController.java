@@ -1,6 +1,7 @@
 package com.tennisclub.controller;
 
 import com.tennisclub.model.FinancialTransaction;
+import com.tennisclub.service.BillingService;
 import com.tennisclub.service.FinancialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class FinancialTransactionController {
 
   @Autowired
   private FinancialService financialService;
+
+  @Autowired
+  private BillingService billingService;
 
   @PostMapping("/transaction")
   public ResponseEntity<?> processTransaction(@RequestBody FinancialTransaction transaction) {
@@ -98,5 +102,14 @@ public class FinancialTransactionController {
       return ResponseEntity.badRequest().body("Error paying bill: " + e.getMessage());
     }
   }
-
+  @PostMapping("/cardPayment/{billingId}")
+  public ResponseEntity<?> processCardPayment(@PathVariable int billingId, @RequestParam String paymentMethodId) {
+    try {
+      FinancialTransaction transaction = financialService.processCardPayment(billingId, paymentMethodId);
+      return ResponseEntity.ok(transaction);
+    } catch (Exception e) {
+      logger.error("Error processing card payment: {}", e.getMessage());
+      return ResponseEntity.badRequest().body("Error processing card payment: " + e.getMessage());
+    }
+  }
 }

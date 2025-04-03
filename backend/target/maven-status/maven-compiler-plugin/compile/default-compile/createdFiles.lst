@@ -59,6 +59,7 @@ com\tennisclub\dto\LoginRequest.class
 com\tennisclub\model\MemberProfile.class
 com\tennisclub\config\DataSourceConfig.class
 com\tennisclub\service\ReservationService.class
+com\tennisclub\util\CustomTimeDeserializer.class
 com\tennisclub\service\UserService.class
 com\tennisclub\dto\RoleAssignmentDTO.class
 com\tennisclub\model\Court.class

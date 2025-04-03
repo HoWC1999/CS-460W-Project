@@ -131,6 +131,19 @@ public class FinancialService {
 
     return financialTransactionRepository.findByUser_UserId(userId);
   }
+  public FinancialTransaction processCardPayment(int billingId, String paymentMethodId) {
+    Optional<FinancialTransaction> optionalTransaction = financialTransactionRepository.findById(billingId);
+    if (optionalTransaction.isEmpty()) {
+      throw new RuntimeException("Billing record not found");
+    }
+    FinancialTransaction transaction = optionalTransaction.get();
+    // Simulate card payment processing using the provided paymentMethodId.
+    // In a real implementation, you would pass paymentMethodId to Stripe's API
+    // and handle the response accordingly.
+    transaction.setStatus(TransactionStatus.SUCCESS);
+    transaction.setDescription(transaction.getDescription() + " | Card payment processed with token: " + paymentMethodId);
+    return financialTransactionRepository.save(transaction);
+  }
 
 
 }

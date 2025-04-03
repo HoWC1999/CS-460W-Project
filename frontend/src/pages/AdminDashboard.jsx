@@ -9,6 +9,7 @@ const AdminDashboard = () => {
             <ul>
                 <li><Link to="/admin/users">Manage Users</Link></li>
                 <li><Link to="/admin/assign-role">Assign Roles</Link></li>
+                <li><Link to={"/admin/events"}>Manage Events</Link></li>
             </ul>
         </div>
     );

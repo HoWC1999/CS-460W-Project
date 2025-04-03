@@ -1,9 +1,13 @@
 package com.tennisclub.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.tennisclub.util.CustomTimeDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.print.attribute.DateTimeSyntax;
+import java.sql.Time;
 import java.util.Date;
 
 @Setter
@@ -29,9 +33,9 @@ public class Events {
   @Column(name = "event_date", nullable = false)
   private Date eventDate;
 
-  @Temporal(TemporalType.TIME)
+  @JsonDeserialize(using = CustomTimeDeserializer.class)
   @Column(name = "event_time", nullable = false)
-  private Date eventTime;
+  private Time eventTime;
 
   @Column(name = "location")
   private String location;
