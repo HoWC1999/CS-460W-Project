@@ -1,7 +1,10 @@
 package com.tennisclub.controller;
 
 import com.tennisclub.dto.RoleAssignmentDTO;
+import com.tennisclub.model.GuestPass;
 import com.tennisclub.model.User;
+import com.tennisclub.repository.GuestPassRepository;
+import com.tennisclub.service.GuestPassService;
 import com.tennisclub.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +20,17 @@ public class AdminController {
 
   private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-  @Autowired
-  private UserService userService;
+  private final GuestPassService guestPassService;
+
+  private final com.tennisclub.repository.GuestPassRepository GuestPassRepository;
+
+  private final UserService userService;
+
+  public AdminController(UserService userService, GuestPassService guestPassService, com.tennisclub.repository.GuestPassRepository guestPassRepository) {
+    this.guestPassService = guestPassService;
+    GuestPassRepository = guestPassRepository;
+    this.userService = userService;
+  }
 
   // GET all users
   @GetMapping("/users")
@@ -58,6 +70,17 @@ public class AdminController {
       }
     } catch (Exception e) {
       return ResponseEntity.badRequest().body("Error assigning role: " + e.getMessage());
+    }
+  }
+  @GetMapping("/getAll")
+  public ResponseEntity<?> getAllPasses() {
+    try {
+      List<GuestPass> guestPass = guestPassService.getAllPasses();
+      logger.info("Fetched {} guest passes", guestPass.size());
+      return ResponseEntity.ok(guestPass);
+    } catch (Exception e) {
+      logger.error("Error fetching guest passes: {}", e.getMessage(),e);
+      return ResponseEntity.status(500).body("Error fetching guest passes:" + e.getMessage());
     }
   }
 }

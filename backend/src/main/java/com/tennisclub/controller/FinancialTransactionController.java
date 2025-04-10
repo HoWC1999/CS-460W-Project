@@ -1,5 +1,6 @@
 package com.tennisclub.controller;
 
+import com.tennisclub.dto.PaymentRefundDTO;
 import com.tennisclub.model.FinancialTransaction;
 import com.tennisclub.service.FinancialService;
 import org.slf4j.Logger;
@@ -32,12 +33,16 @@ public class FinancialTransactionController {
   }
 
   @PostMapping("/refund")
-  public ResponseEntity<?> processRefund(@RequestBody FinancialTransaction transaction) {
+  public ResponseEntity<?> processRefund(@RequestBody PaymentRefundDTO refundDTO) {
     try {
+      logger.info("Processing refund for transaction {} with amount {}",
+        refundDTO.getTransactionId(), refundDTO.getAmount());
+      FinancialTransaction transaction = financialService.markAsDisputed(refundDTO.getTransactionId(), "Refund Requested");
       FinancialTransaction processed = financialService.processRefund(transaction);
+      logger.info("Refund processed successfully for transaction {}", refundDTO.getTransactionId());
       return ResponseEntity.ok(processed);
     } catch (Exception e) {
-      logger.error("Error processing refund: {}", e.getMessage());
+      logger.error("Error processing refund for transaction {}: {}", refundDTO.getTransactionId(), e.getMessage(), e);
       return ResponseEntity.badRequest().body("Error processing refund: " + e.getMessage());
     }
   }

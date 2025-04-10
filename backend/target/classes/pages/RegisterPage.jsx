@@ -11,10 +11,18 @@ function RegisterPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleRegistration = async (e) => {
     e.preventDefault();
     // Map telephone to phoneNumber, matching your database field.
+    setError("");
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     const userData = {
       username,
       password,
@@ -36,6 +44,7 @@ function RegisterPage() {
     return (
         <div className="register-container">
             <h2>Register</h2>
+            {error && <p className="error">{error}</p>}
             <form className="register-form" onSubmit={handleRegistration}>
                 <label htmlFor="username">Username</label>
                 <input
@@ -52,6 +61,15 @@ function RegisterPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                />
+
+               <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                 />
 
                 <label htmlFor="email">Email</label>

@@ -11,4 +11,6 @@ import java.util.List;
 public interface FinancialTransactionRepository extends JpaRepository<FinancialTransaction, Integer> {
     List<FinancialTransaction> findByUser_UserId(int userId);
     List<FinancialTransaction> findByTransactionTypeAndStatus(String transactionType, TransactionStatus status);
+    // Returns all financial transactions whose description contains the keyword "Disputed:"
+    List<FinancialTransaction> findByDescriptionContaining(String disputeKeyword);
 }

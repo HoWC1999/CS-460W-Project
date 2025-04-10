@@ -5,51 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb215dea-b5dd-46cc-85f7-198750a6c4b8" name="Changes" comment="Controller logic">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/enums/BillingPlan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/72b07e0c-10c5-4da1-9e63-35cd2b62fb94.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/72b07e0c-10c5-4da1-9e63-35cd2b62fb94.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/72b07e0c-10c5-4da1-9e63-35cd2b62fb94/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/72b07e0c-10c5-4da1-9e63-35cd2b62fb94/storage_v2/_src_/schema/sys.zb4BAA.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/GuestPassController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/dto/PaymentRefundDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/GuestPass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/GuestPassRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/GuestPassService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/account/PurchaseGuestPassPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/services/guestPassService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9957fdd2-77ae-4472-9e62-b664fbe7715b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9957fdd2-77ae-4472-9e62-b664fbe7715b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS-460W-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS-460W-Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/TennisClubApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/TennisClubApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/DisputeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/DisputeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/FinancialTransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/FinancialTransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/FinancialTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/FinancialTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/enums/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/enums/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/EventRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/FinancialTransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/FinancialTransactionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/BillingService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/FinancialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/FinancialService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/CS-460W-Project-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/CS-460W-Project-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/CS-460W-Project-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/CS-460W-Project-1.0.0.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/TennisClubApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/TennisClubApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/DisputeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/DisputeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/FinancialTransactionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/FinancialTransactionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/FinancialTransaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/FinancialTransaction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/enums/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/enums/Transaction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/ReservationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/repository/FinancialTransactionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/repository/FinancialTransactionRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/BillingService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/FinancialService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/FinancialService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/pages/RegisterPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MemberBillingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MemberBillingPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/RegisterPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/TreasurerBillingManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/TreasurerBillingManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/UpdateProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/UpdateProfilePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/billingService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/billingService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/RefundPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/RefundPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/MyAccountPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/MyAccountPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/adminService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/adminService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/financialService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/financialService.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +45,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -197,7 +182,7 @@
       <workItem from="1744122991077" duration="5261000" />
       <workItem from="1744204832846" duration="1508000" />
       <workItem from="1744222690427" duration="7927000" />
-      <workItem from="1744299645257" duration="7563000" />
+      <workItem from="1744299645257" duration="22183000" />
     </task>
     <task id="LOCAL-00001" summary="Controller logic">
       <option name="closed" value="true" />

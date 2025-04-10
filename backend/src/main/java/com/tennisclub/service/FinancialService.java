@@ -314,4 +314,38 @@ public class FinancialService {
       throw new RuntimeException("Error marking transaction as disputed", e);
     }
   }
+  public List<FinancialTransaction> getDisputedTransactions() {
+    try {
+      logger.info("Fetching disputed transactions");
+      List<FinancialTransaction> disputed = financialTransactionRepository.findByDescriptionContaining("Disputed:");
+      logger.info("Fetched {} disputed transactions", disputed.size());
+      return disputed;
+    } catch (Exception e) {
+      logger.error("Error fetching disputed transactions: {}", e.getMessage(), e);
+      throw new RuntimeException("Error fetching disputed transactions: " + e.getMessage());
+    }
+  }
+
+  public FinancialTransaction markAsRefundIssued(int transactionId) {
+    Optional<FinancialTransaction> optionalTransaction = financialTransactionRepository.findById(transactionId);
+    if (optionalTransaction.isEmpty()) {
+      logger.error("Billing record {} not found for refund.", transactionId);
+      throw new RuntimeException("Billing record not found");
+    }
+    FinancialTransaction transaction = optionalTransaction.get();
+    logger.info("Marking transaction {} as refunded.", transactionId);
+    // Replace the description with a message that clearly indicates a refund has been issued.
+    transaction.setDescription("Refund has been issued");
+    // Optionally, update the status to reflect that it is no longer refundable.
+    // (If you have a separate REFUNDED enum constant, use that instead.)
+    transaction.setStatus(TransactionStatus.SUCCESS);
+    try {
+      FinancialTransaction savedTransaction = financialTransactionRepository.save(transaction);
+      logger.info("Refund processed successfully for transaction {}.", transactionId);
+      return savedTransaction;
+    } catch (Exception e) {
+      logger.error("Error saving refund update for transaction {}: {}", transactionId, e.getMessage(), e);
+      throw new RuntimeException("Error processing refund: " + e.getMessage());
+    }
+  }
 }

@@ -11,7 +11,6 @@ import MyAccountPage from "./pages/account/MyAccountPage";
 import UpdateProfilePage from "./pages/account/UpdateProfilePage";
 import MemberBillingPage from "./pages/MemberBillingPage";
 import TreasurerDashboard from "./pages/TreasurerDashboard";
-
 import TreasurerBillingManagementPage from "./pages/TreasurerBillingManagement";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserManagementPage from "./pages/UserManagementPage";
@@ -20,6 +19,7 @@ import AdminEventManagementPage from "./pages/AdminEventManagementPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 import Events from "./pages/Events";
+import PurchaseGuestPassPage from "./pages/account/PurchaseGuestPassPage";
 
 function App() {
   return (
@@ -30,9 +30,10 @@ function App() {
           <Route path="/reserve" element={<CourtReservation />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/refund" element={<RefundPage />} />
+          <Route path="/treasurer/refunds" element={<RefundPage />} />
           <Route path="/account/MyAccountPage" element={<MyAccountPage />} />
           <Route path="/account/UpdateProfilePage" element={<UpdateProfilePage />} />
+          <Route path="/account/guestpass" element={<PurchaseGuestPassPage />} />
           <Route path="/billing" element={<MemberBillingPage />}/>
           <Route path="/Events" element={<Events />}/>
           {/* Treasurer Routes */}
