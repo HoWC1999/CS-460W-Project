@@ -1,11 +1,13 @@
 package com.tennisclub;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@EnableScheduling
 @SpringBootApplication
 public class TennisClubApplication {
 

@@ -6,6 +6,7 @@ com\tennisclub\dto\PaymentResponseDTO.class
 com\tennisclub\dto\ReportCriteriaDTO.class
 com\tennisclub\service\NotificationService.class
 com\tennisclub\dto\PaymentRequestDTO.class
+com\tennisclub\model\enums\BillingPlan.class
 com\tennisclub\repository\MemberProfileRepository.class
 com\tennisclub\dto\FinancialTransactionDTO.class
 com\tennisclub\TennisClubApplication.class
@@ -20,7 +21,6 @@ com\tennisclub\model\enums\Events.class
 com\tennisclub\controller\AuthController.class
 com\tennisclub\service\EventService.class
 com\tennisclub\model\CourtReservation.class
-com\tennisclub\service\BillingService.class
 com\tennisclub\model\enums\Role.class
 com\tennisclub\model\JWTToken.class
 com\tennisclub\model\enums\TransactionStatus.class

@@ -1,7 +1,6 @@
 package com.tennisclub.controller;
 
 import com.tennisclub.model.FinancialTransaction;
-import com.tennisclub.service.BillingService;
 import com.tennisclub.service.FinancialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +19,6 @@ public class FinancialTransactionController {
 
   @Autowired
   private FinancialService financialService;
-
-  @Autowired
-  private BillingService billingService;
 
   @PostMapping("/transaction")
   public ResponseEntity<?> processTransaction(@RequestBody FinancialTransaction transaction) {
@@ -59,10 +55,10 @@ public class FinancialTransactionController {
   }
 
   @PostMapping("/late")
-  public ResponseEntity<?> applyLateFee(@RequestParam int user, @RequestParam BigDecimal baseAmount) {
+  public ResponseEntity<?> applyLateFee(@RequestParam int userId, @RequestParam BigDecimal baseAmount) {
     try {
-      FinancialTransaction transaction = financialService.applyLateFee(user, baseAmount);
-      logger.info("Applied late fee for user {}: {}", user, transaction);
+      FinancialTransaction transaction = financialService.applyLateFee(userId, baseAmount);
+      logger.info("Applied late fee for user {}: {}", userId, transaction);
       return ResponseEntity.ok(transaction);
     } catch (Exception e) {
       logger.error("Error applying late fee: {}", e.getMessage());

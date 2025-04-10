@@ -62,6 +62,7 @@ const UpdateProfilePage = () => {
                     onChange={handleChange}
                     required
                 />
+              <p>
                 <label>Username:</label>
                 <input
                     type="text"
@@ -70,6 +71,7 @@ const UpdateProfilePage = () => {
                     onChange={handleChange}
                     required
                 />
+              </p>
                 <label>Password (leave blank to keep current):</label>
                 <input
                     type="password"
@@ -77,7 +79,14 @@ const UpdateProfilePage = () => {
                     value={updateData.password}
                     onChange={handleChange}
                 />
+              <label>Confirm Password</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  />
+              <p>
                 <button type="submit">Update</button>
+              </p>
             </form>
         </div>
     );

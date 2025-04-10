@@ -18,7 +18,7 @@ const MemberBillingPage = () => {
 
   // State for dispute handling
   const [disputeReasons, setDisputeReasons] = useState({});
-  const [disputeMode, setDisputeMode] = useState(null); // billingId being disputed
+  const [disputeMode, setDisputeMode] = useState(null); // transactionId being disputed
 
   // Payment-related state
   const [selectedBill, setSelectedBill] = useState(null);
@@ -55,8 +55,8 @@ const MemberBillingPage = () => {
   };
 
   // Handle selecting a bill from the list (e.g., via a dropdown or button)
-  const handleBillSelect = (billingId) => {
-    const bill = billingHistory.find(b => b.transactionId.toString() === billingId.toString());
+  const handleBillSelect = (transactionId) => {
+    const bill = billingHistory.find(b => b.transactionId.toString() === transactionId.toString());
     setSelectedBill(bill);
     // If auto pay is enabled, trigger payment immediately
     if (autoPay && bill) {
@@ -85,12 +85,12 @@ const MemberBillingPage = () => {
   };
 
   // Handler for manual payment button (bypasses the PaymentForm)
-  const handlePayBill = async (billingId) => {
+  const handlePayBill = async (transactionId) => {
     try {
       // If autoPay is enabled, assume saved card details exist and process payment directly.
       // Otherwise, if a payment form is shown, the onPaymentSuccess callback will handle it.
       if (!showPaymentForm) {
-        await payBill(billingId, paymentMethod);
+        await payBill(transactionId, paymentMethod);
         const data = await getBillingHistory(user.userId);
         setBillingHistory(data);
         setSelectedBill(null);
@@ -100,14 +100,14 @@ const MemberBillingPage = () => {
     }
   };
 
-  const handleDisputeSubmit = async (billingId) => {
+  const handleDisputeSubmit = async (transactionId) => {
     try {
-      const reason = disputeReasons[billingId];
+      const reason = disputeReasons[transactionId];
       if (!reason || reason.trim() === '') {
         setError('Please provide a dispute reason.');
         return;
       }
-      await createDispute(billingId, { reason });
+      await createDispute(transactionId, { reason });
       const data = await getBillingHistory(user.userId);
       setBillingHistory(data);
       setDisputeMode(null);

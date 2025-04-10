@@ -1,14 +1,17 @@
 // src/pages/TreasurerBillingManagementPage.js
 import React, { useEffect, useState } from 'react';
 import { getAllBilling, applyLateFee, chargeAnnualMembershipFee } from '../services/billingService';
-
+import { getAllUsers } from "../services/adminService";
 
 const TreasurerBillingManagementPage = () => {
   const [billingRecords, setBillingRecords] = useState([]);
   const [error, setError] = useState('');
-  const [userId, setUserId] = useState('');
-  const [amount, setAmount] = useState('');
-  const [baseAmount, setBaseAmount] = useState('');
+  const [userId, setUserId] = useState('');                // For the late fee form
+  const [amount, setAmount] = useState('');                // For membership fee
+  const [baseAmount, setBaseAmount] = useState('');        // For late fee
+  const [users, setUsers] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState('');  // For the membership fee form
+  const [message, setMessage] = useState('');
 
   const fetchBillingRecords = async () => {
     try {
@@ -23,21 +26,36 @@ const TreasurerBillingManagementPage = () => {
     fetchBillingRecords();
   }, []);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const usersData = await getAllUsers();
+        setUsers(usersData);
+      } catch (error) {
+        setMessage('Unable to fetch users.');
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  // Handler for applying late fee using userId from the late fee input
   const handleApplyLateFee = async (e) => {
     e.preventDefault();
     try {
       await applyLateFee(Number(userId), Number(baseAmount));
-      fetchBillingRecords();
+      await fetchBillingRecords();
     } catch (err) {
       setError('Late fee application failed.');
     }
   };
 
+  // Corrected handler: uses selectedUserId from the dropdown for membership fee
   const handleChargeMembership = async (e) => {
     e.preventDefault();
     try {
-      await chargeAnnualMembershipFee(Number(userId), Number(amount));
-      fetchBillingRecords();
+      // Use selectedUserId instead of userId here.
+      await chargeAnnualMembershipFee(Number(selectedUserId), Number(amount));
+      await fetchBillingRecords();
     } catch (err) {
       setError('Annual membership fee processing failed.');
     }
@@ -51,8 +69,20 @@ const TreasurerBillingManagementPage = () => {
       <div className="billing-actions">
         <form onSubmit={handleChargeMembership}>
           <h3>Charge Annual Membership Fee</h3>
-          <label>User ID:</label>
-          <input type="number" value={userId} onChange={e => setUserId(e.target.value)} required />
+          <label htmlFor="userSelect">Select User:</label>
+          <select
+            id="userSelect"
+            value={selectedUserId}
+            onChange={(e) => setSelectedUserId(e.target.value)}
+            required
+          >
+            <option value="">--Select a user--</option>
+            {users.map((user) => (
+              <option key={user.userId} value={user.userId}>
+                {user.username} (ID: {user.userId})
+              </option>
+            ))}
+          </select>
           <label>Amount:</label>
           <input type="number" value={amount} onChange={e => setAmount(e.target.value)} required />
           <button type="submit">Charge Membership Fee</button>

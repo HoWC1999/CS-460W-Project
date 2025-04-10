@@ -29,7 +29,11 @@ public class UserService {
       logger.error("Registration failed: Username {} already exists", user.getUsername());
       throw new RuntimeException("Username already exists");
     }
-    user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+    // Assume user.getPassword() returns the raw password from the frontend.
+    String rawPassword = user.getPassword();
+    // Use your PasswordEncoder bean to encode the password.
+    user.setPasswordHash(passwordEncoder.encode(rawPassword));
+    user.setPassword(null);
     if (user.getRole() == null) {
       user.setRole(Role.MEMBER);
     }
@@ -59,7 +63,8 @@ public class UserService {
     }
     if (updateData.getPassword() != null && !updateData.getPassword().isEmpty()) {
       logger.info("Updating password for user id: {}", userId);
-      user.setPasswordHash(passwordEncoder.encode(updateData.getPassword()));
+      String rawPassword = updateData.getPassword();
+      user.setPasswordHash(passwordEncoder.encode(rawPassword));
     }
     User updatedUser = userRepository.save(user);
     logger.info("User updated successfully: {}", updatedUser);

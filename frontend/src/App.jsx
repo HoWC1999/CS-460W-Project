@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CourtReservation from "./pages/CourtReservation";
 import Navbar from "./components/Navbar";
@@ -30,7 +30,7 @@ function App() {
           <Route path="/reserve" element={<CourtReservation />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/refund" element={<RefundPage />} />
+          <Route path="/treasurer/refunds" element={<RefundPage />} />
           <Route path="/account/MyAccountPage" element={<MyAccountPage />} />
           <Route path="/account/UpdateProfilePage" element={<UpdateProfilePage />} />
           <Route path="/billing" element={<MemberBillingPage />}/>

@@ -26,11 +26,9 @@ const Navbar = () => {
                     <Link to="/reserve" className="header-item">Reserve Court</Link>
                     {/* Optionally, show additional role-based links */}
 
-                    {token && userRole === "TREASURER" || "ADMIN" && (
-                        <>
-                            <Link to="/treasurer" className="header-item">Treasurer Dashboard</Link>
-
-                    </>)}
+                  {token && (userRole === "TREASURER" || userRole === "ADMIN") && (
+                    <Link to="/treasurer" className="header-item">Treasurer Dashboard</Link>
+                  )}
 
                     {token && userRole === "ADMIN" && (
                         <>

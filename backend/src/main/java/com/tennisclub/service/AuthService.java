@@ -5,6 +5,7 @@ import com.tennisclub.model.User;
 import com.tennisclub.repository.UserRepository;
 import com.tennisclub.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -22,13 +23,17 @@ public class AuthService {
   @Autowired
   private JwtUtil jwtUtil;
 
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
   public JWTToken login(String username, String password) {
     User user = userRepository.findByUsername(username);
     if(user == null) {
       throw new RuntimeException("User not found");
     }
     // Directly compare the raw password with the stored value (which, for now, should be plain text)
-    if(!password.equals(user.getPasswordHash())) {
+    // Verify the raw password against the stored hashed password.
+    if (!passwordEncoder.matches(password, user.getPasswordHash())) {
       throw new RuntimeException("Invalid password");
     }
     // Generate JWT token with 1 hour expiry

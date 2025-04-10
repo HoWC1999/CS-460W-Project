@@ -38,8 +38,20 @@ public class FinancialTransaction {
   // We now store status as a string, but we map it to our enum
   @Column(nullable = false, length = 20)
   @Enumerated(EnumType.STRING)
-  private TransactionStatus status;
+  private TransactionStatus status = TransactionStatus.valueOf("PENDING");
 
   @Column(length = 255)
   private String description;
+
+  @PrePersist
+  protected void onCreate() {
+    this.transactionDate = new Date();
+    this.transactionType = " ";
+  }
+
+  public void setBillingDate(Date date) {
+  }
+
+  public void setFeeType(String membership) {
+  }
 }

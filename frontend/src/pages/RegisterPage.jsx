@@ -1,53 +1,75 @@
+// src/pages/RegisterPage.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/RegisterPage.css";
+import { register } from "../services/userService";
 
 function RegisterPage() {
-    const [firstName, setFirstName] = useState("");
-    const [middleName, setMiddleName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [telephone, setTelephone] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleRegistration = (e) => {
-        e.preventDefault();
-        // Add logic to handle registration (e.g., call an API)
-        console.log("Registration Data:", {
-            firstName,
-            middleName,
-            lastName,
-            email,
-            telephone,
-        });
+  const handleRegistration = async (e) => {
+    e.preventDefault();
+    // Map telephone to phoneNumber, matching your database field.
+    setError("");
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    const userData = {
+      username,
+      password,
+      email,
+      phoneNumber,
     };
+
+    try {
+      const registeredUser = await register(userData);
+      console.log("User registered successfully:", registeredUser);
+      // Optionally, you may redirect to a login page or home page upon success.
+      navigate("/login");
+    } catch (err) {
+      console.error("Registration failed:", err);
+      setError("Registration failed: " + (err.message || err));
+    }
+  };
 
     return (
         <div className="register-container">
             <h2>Register</h2>
+            {error && <p className="error">{error}</p>}
             <form className="register-form" onSubmit={handleRegistration}>
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="username">Username</label>
                 <input
-                    id="firstName"
+                    id="username"
                     type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                 />
 
-                <label htmlFor="middleName">Middle Name</label>
+                <label htmlFor="password">Password</label>
                 <input
-                    id="middleName"
-                    type="text"
-                    value={middleName}
-                    onChange={(e) => setMiddleName(e.target.value)}
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <label htmlFor="lastName">Last Name</label>
+               <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
-                    id="lastName"
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                 />
 
                 <label htmlFor="email">Email</label>
@@ -59,12 +81,12 @@ function RegisterPage() {
                     required
                 />
 
-                <label htmlFor="telephone">Telephone</label>
+                <label htmlFor="phoneNumber">Telephone</label>
                 <input
-                    id="telephone"
+                    id="phoneNumber"
                     type="tel"
-                    value={telephone}
-                    onChange={(e) => setTelephone(e.target.value)}
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
                     required
                 />
 

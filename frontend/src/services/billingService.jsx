@@ -21,16 +21,18 @@ export const getAllBilling = async () => {
 
 export const chargeAnnualMembershipFee = async (userId, amount) => {
   try {
-    const response = await api.post('/financial/membership', null, { params: { userId, amount } });
+    // Sending {} instead of null; some frameworks may choke on a null body.
+    const response = await api.post('/financial/membership', {}, { params: { user: userId, amount } });
     return response.data;
   } catch (error) {
     throw error.response?.data || 'Annual membership fee processing failed';
   }
 };
 
-export const applyLateFee = async (userId, baseAmount) => {
+
+export const applyLateFee = async (selectedUserId, baseAmount) => {
   try {
-    const response = await api.post('/financial/late', null, { params: { userId, baseAmount } });
+    const response = await api.post('/financial/late', null, { params: { selectedUserId, baseAmount } });
     return response.data;
   } catch (error) {
     throw error.response?.data || 'Late fee application failed';

@@ -1,5 +1,6 @@
 package com.tennisclub.model;
 
+import com.tennisclub.model.enums.BillingPlan;
 import com.tennisclub.model.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,8 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
+  @Transient
+  private String password;
   // Getters and setters
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +45,10 @@ public class User {
   @Column(nullable = true)
   private String fullName;
 
+  @Column(name = "billing_plan", nullable = false)
+  @Enumerated(EnumType.STRING)
+  private BillingPlan billingPlan = BillingPlan.MONTHLY;
+
   // Constructors
   public User() {
   }
@@ -53,6 +60,4 @@ public class User {
     this.role = role;
     this.status = status;
   }
-
-
 }
