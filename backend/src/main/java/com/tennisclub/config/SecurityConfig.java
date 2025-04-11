@@ -31,12 +31,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .cors()  // Enable CORS
       .and()
       .csrf().disable() // Disable CSRF for testing
-      .authorizeRequests()
+
       // Allow unauthenticated access to login and register endpoints
+
+      .headers()
+        .frameOptions().disable()
+        .and()
+      .authorizeRequests()
       .antMatchers("/api/auth/**", "/api/users/register").permitAll()
       // Optionally, if you want to allow /api/users/me without authentication, use .permitAll()
       // Otherwise, require authentication for /api/users/me:
       .antMatchers("/api/users/me").authenticated()
+      .antMatchers("/h2-console/**").permitAll()
       .anyRequest().authenticated()
       .and()
       // Add the JWT filter before the standard authentication filter
