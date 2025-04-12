@@ -4,9 +4,6 @@
     <content url="file://$MODULE_DIR$/frontend">
       <sourceFolder url="file://$MODULE_DIR$/frontend/src" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$/backend" dumb="true">
-      <sourceFolder url="file://$MODULE_DIR$/backend" isTestSource="false" />
-    </content>
   </component>
   <component name="FacetManager">
     <facet type="jpa" name="JPA">

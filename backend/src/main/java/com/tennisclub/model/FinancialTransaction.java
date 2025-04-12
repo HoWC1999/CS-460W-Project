@@ -35,23 +35,49 @@ public class FinancialTransaction {
   @Column(name = "transaction_type", nullable = false, length = 50)
   private String transactionType;
 
-  // We now store status as a string, but we map it to our enum
+  // The status is mapped as an enum
   @Column(nullable = false, length = 20)
   @Enumerated(EnumType.STRING)
-  private TransactionStatus status = TransactionStatus.valueOf("PENDING");
+  private TransactionStatus status = TransactionStatus.PENDING;
 
   @Column(length = 255)
   private String description;
 
+  // Optional: Automatically set the transaction date if not provided.
+  // Remove or modify this method if you want to allow explicit setting.
   @PrePersist
   protected void onCreate() {
-    this.transactionDate = new Date();
-    this.transactionType = " ";
+    if (this.transactionDate == null) {
+      this.transactionDate = new Date();
+    }
   }
 
+  /**
+   * Sets the billing date for the transaction.
+   * In this entity, the billing date maps to the transaction date.
+   *
+   * @param date The date when billing occurs.
+   */
   public void setBillingDate(Date date) {
+    this.transactionDate = date;
   }
 
-  public void setFeeType(String membership) {
+  /**
+   * Sets the fee type (e.g., "membership", "late_fee", etc.)
+   *
+   * @param feeType The fee type to set.
+   */
+  public void setFeeType(String feeType) {
+    this.transactionType = feeType;
+  }
+
+  /**
+   * Retrieves the fee type.
+   *
+   * @return The fee type.
+   */
+  public String getFeeType() {
+    return this.transactionType;
   }
 }
+

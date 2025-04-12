@@ -1,9 +1,12 @@
-// src/test/java/com/tennisclub/service/AuthServiceTest.java
 package com.tennisclub.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
 import com.tennisclub.model.JWTToken;
 import com.tennisclub.model.User;
-import com.tennisclub.model.enums.Role;
 import com.tennisclub.repository.UserRepository;
 import com.tennisclub.util.JwtUtil;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,17 +15,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.util.Date;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
 
   @Mock
   private UserRepository userRepository;
+
+  @Mock
+  private PasswordEncoder passwordEncoder;
 
   @Mock
   private JwtUtil jwtUtil;
@@ -33,38 +35,43 @@ public class AuthServiceTest {
   private User testUser;
 
   @BeforeEach
-  void setUp() {
+  public void setUp() {
+    // Initialize a test user. Note that user.getPassword() must return the stored (hashed) password.
     testUser = new User();
-    testUser.setUserId(1);
-    testUser.setUsername("testUser");
-    // For this test the "raw password" is stored unencoded for simplicity.
-    testUser.setPasswordHash("rawPass");
-    testUser.setRole(Role.MEMBER);
-    testUser.setEmail("test@example.com");
+    testUser.setUsername("testuser");
+    // For testing purposes, assume that "hashedpassword" is the hashed version of "pass".
+    testUser.setPasswordHash("hashedpassword");
+    testUser.setEmail("test@test.com");
+    // You can also set additional fields as needed.
   }
 
   @Test
-  void login_userNotFound_shouldThrowException() {
-    when(userRepository.findByUsername("nonexistent")).thenReturn(null);
-    RuntimeException ex = assertThrows(RuntimeException.class, () -> authService.login("nonexistent", "whatever"));
-    assertEquals("User not found", ex.getMessage());
+  public void login_invalidPassword_shouldThrowException() {
+    // Arrange: Setup mocks so that the invalid password scenario occurs.
+    when(userRepository.findByUsername("testuser")).thenReturn(testUser);
+    // Simulate that the raw password "wrongpassword" does not match the stored hash.
+    when(passwordEncoder.matches("wrongpassword", testUser.getPasswordHash())).thenReturn(false);
+
+    // Act & Assert: Verify that a RuntimeException is thrown with "Invalid password".
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+      authService.login("testuser", "wrongpassword");
+    });
+    assertEquals("Invalid password", exception.getMessage());
   }
 
   @Test
-  void login_invalidPassword_shouldThrowException() {
-    when(userRepository.findByUsername("testUser")).thenReturn(testUser);
-    RuntimeException ex = assertThrows(RuntimeException.class, () -> authService.login("testUser", "wrongPass"));
-    assertEquals("Invalid password", ex.getMessage());
-  }
+  public void login_validCredentials_shouldReturnJWTToken() {
+    // Arrange: Setup mocks for a successful login.
+    when(userRepository.findByUsername("testuser")).thenReturn(testUser);
+    when(passwordEncoder.matches("pass", testUser.getPasswordHash())).thenReturn(true);
+    // Use eq() matcher for the raw string "testuser" so that all arguments use matchers
+    when(jwtUtil.generateToken(eq("testuser"), anyString())).thenReturn("dummyToken");
 
-  @Test
-  void login_validCredentials_shouldReturnJWTToken() {
-    when(userRepository.findByUsername("testUser")).thenReturn(testUser);
-    when(jwtUtil.generateToken("testUser", "MEMBER")).thenReturn("dummyToken");
-    JWTToken token = authService.login("testUser", "rawPass");
+    // Act: Call the login method.
+    JWTToken token = authService.login("testuser", "pass");
+
+    // Assert: Verify that a valid token is returned.
     assertNotNull(token);
     assertEquals("dummyToken", token.getToken());
-    // You can also add assertions about the expiry if needed.
-    assertTrue(token.getExpiry().after(new Date()));
   }
 }

@@ -8,6 +8,7 @@ com\tennisclub\model\GuestPass.class
 com\tennisclub\service\NotificationService.class
 com\tennisclub\dto\PaymentRequestDTO.class
 com\tennisclub\model\enums\BillingPlan.class
+com\tennisclub\util\DataSeeder.class
 com\tennisclub\repository\MemberProfileRepository.class
 com\tennisclub\dto\FinancialTransactionDTO.class
 com\tennisclub\TennisClubApplication.class

@@ -1,0 +1,6 @@
+com\tennisclub\controller\AuthControllerIntegrationTest.class
+com\tennisclub\service\UserServiceTest.class
+com\tennisclub\service\FinancialServiceTest.class
+com\tennisclub\service\ReservationServiceTest.class
+com\tennisclub\controller\AuthControllerIntegrationTest$LoginRequest.class
+com\tennisclub\service\AuthServiceTest.class

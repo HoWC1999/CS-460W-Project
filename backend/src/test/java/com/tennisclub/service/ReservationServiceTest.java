@@ -77,4 +77,3 @@ public class ReservationServiceTest {
     assertTrue(ex.getMessage().contains("Court 1 is already reserved during the requested time."));
   }
 }
-

@@ -11,15 +11,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
 
   @Mock
   private UserRepository userRepository;
+
+  @Mock
+  private PasswordEncoder passwordEncoder;
 
   @InjectMocks
   private UserService userService;
@@ -29,7 +33,7 @@ public class UserServiceTest {
   @BeforeEach
   void setUp() {
     existingUser = new User();
-    existingUser.setUserId(1);
+    existingUser.setUserId(2);
     existingUser.setUsername("oldUser");
     existingUser.setEmail("old@example.com");
     existingUser.setPasswordHash("oldPass");
@@ -39,28 +43,45 @@ public class UserServiceTest {
 
   @Test
   void updateProfile_userNotFound_shouldThrowException() {
-    when(userRepository.findById(1)).thenReturn(null);
-    UpdateUserDTO dto = new UpdateUserDTO();
-    dto.setUsername("newUser");
-    RuntimeException ex = assertThrows(RuntimeException.class, () -> userService.updateProfile(1, dto));
-    assertEquals("User not found", ex.getMessage());
+    // Arrange: Stub findById(2) to simulate that the user is not found.
+    when(userRepository.findById(eq(2))).thenReturn(null);
+
+    UpdateUserDTO updateUserDTO = new UpdateUserDTO();
+    updateUserDTO.setUsername("newusername");
+
+    // Act and Assert: Expect an exception with the message "User not found"
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+      userService.updateProfile(2, updateUserDTO);
+    });
+    assertEquals("User not found", exception.getMessage());
   }
 
   @Test
   void updateProfile_success_shouldUpdateFields() {
-    UpdateUserDTO dto = new UpdateUserDTO();
-    dto.setUsername("newUser");
-    dto.setEmail("new@example.com");
-    dto.setPassword("newPass");
+    // Arrange:
+    int userId = 2;
+    UpdateUserDTO updateData = new UpdateUserDTO();
+    updateData.setUsername("newUsername");
+    updateData.setEmail("new@mail.com");
+    updateData.setPassword("newPassword");
 
-    when(userRepository.findById(1)).thenReturn(existingUser);
-    when(userRepository.save(existingUser)).thenReturn(existingUser);
+    User existingUser = new User();
+    existingUser.setUserId(userId);
+    existingUser.setUsername("oldUsername");
+    existingUser.setEmail("old@mail.com");
+    // ... initialize other properties as needed
 
-    User updatedUser = userService.updateProfile(1, dto);
+    when(userRepository.findById(eq(userId))).thenReturn(existingUser);
+    when(passwordEncoder.encode(anyString())).thenReturn("hashedNewPassword");
+    when(userRepository.save(any(User.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-    assertEquals("newUser", updatedUser.getUsername());
-    assertEquals("new@example.com", updatedUser.getEmail());
-    // In production, the password should be encoded; here we assume the test bypasses encoding.
-    assertNotEquals("newPass", updatedUser.getPasswordHash());
+    // Act:
+    User updatedUser = userService.updateProfile(userId, updateData);
+
+    // Assert:
+    assertNotNull(updatedUser, "The updated user should not be null.");
+    assertEquals("newUsername", updatedUser.getUsername());
+    assertEquals("new@mail.com", updatedUser.getEmail());
+    assertEquals("hashedNewPassword", updatedUser.getPasswordHash());
   }
 }
