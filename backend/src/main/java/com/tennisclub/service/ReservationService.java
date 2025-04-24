@@ -28,7 +28,7 @@ public class ReservationService {
   private static final int DEFAULT_DURATION_MINUTES = 90;
 
   public CourtReservation createReservation(CourtReservationDTO dto) throws ParseException {
-    // Lookup the user by email. (Adjust according to your user handling.)
+    // Lookup the user by email
     User user = userRepository.findByEmail(dto.getEmail());
     if (user == null) {
       throw new RuntimeException("User not found for email: " + dto.getEmail());
@@ -37,6 +37,21 @@ public class ReservationService {
     // Parse the reservation date
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date reservationDate = dateFormat.parse(dto.getDate());
+
+    // Time Gating Logic
+    Date today = new Date();
+    Date maxFutureDate = new Date(today.getTime() + (60L * 24 * 60 * 60 * 1000)); // 60 days ahead
+
+    // Normalize today's date to remove the time component
+    today = dateFormat.parse(dateFormat.format(today));
+
+    if (reservationDate.before(today)) {
+      throw new RuntimeException("Reservation date must be in the future.");
+    }
+
+    if (reservationDate.after(maxFutureDate)) {
+      throw new RuntimeException("Reservation date cannot be more than 2 months in the future.");
+    }
 
     // Parse the start time. Expect "HH:mm" format and append ":00" if needed.
     String timeString = dto.getTime();
@@ -76,9 +91,9 @@ public class ReservationService {
    * Returns true if [start1, end1) and [start2, end2) overlap.
    */
   private boolean timesOverlap(Time start1, Time end1, Time start2, Time end2) {
-    // Two intervals overlap if the start of one is before the end of the other and vice versa.
     return start1.before(end2) && start2.before(end1);
   }
+
   /**
    * Retrieves reservations for a user based on their user ID.
    *
@@ -89,5 +104,4 @@ public class ReservationService {
     Optional<User> user = Optional.ofNullable(userRepository.findById(userId));
     return reservationRepository.findByBookedBy(user);
   }
-
 }
