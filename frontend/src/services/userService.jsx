@@ -30,12 +30,12 @@ export const getUser = async (userId) => {
 };
 // Fetch the full user profile for the currently logged-in user.
 export const getMyProfile = async () => {
-  try {
-    const response = await api.get('/users/me');
-    return response.data;
-  } catch (error) {
+    try {
+        const response = await api.get('/users/me');
+        return response.data;
+    } catch (error) {
     throw error.response?.data || 'Unable to fetch user profile';
-  }
+    }
 };
 
 export const updateMyProfile = async (profileData) => {

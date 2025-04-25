@@ -1,3 +1,27 @@
+.login-page {
+    position: relative;
+    display: flex;
+    justify-content: center; /* center the card horizontally */
+    align-items: center;     /* center it vertically */
+    min-height: calc(100vh - 120px); /* adjust 120px to (header + footer) height */
+    overflow: hidden;
+}
+
+.login-page::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: url("../images/img1.jpg") no-repeat center center;
+    background-size: cover;
+
+    /* blur filter */
+    filter: blur(6px);
+    /* dim it if you like: */
+    /* opacity: 0.8; */
+
+    z-index: -1;  /* push behind the .login-container */
+}
+
 .login-container {
     max-width: 400px;
     margin: 80px auto;
