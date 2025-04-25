@@ -37,11 +37,11 @@ export const assignRole = async (userId, role) => {
 };
 
 export const getAllPasses = async () => {
-  try {
-    const response = await api.get('/admin/getAll');
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    throw error.response?.data || "Error fetching users";
-  }
+    try {
+        const response = await api.get('/admin/getAll');
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        throw error.response?.data || "Error fetching users";
+    }
 };

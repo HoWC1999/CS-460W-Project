@@ -25,35 +25,37 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            {error && <p className="error">{error}</p>}
-            <form className="login-form" onSubmit={handleLogin}>
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Enter Username"
-                    required
-                />
+        <div className="login-page">
+            <div className="login-container">
+                <h2>Login</h2>
+                {error && <p className="error">{error}</p>}
+                <form className="login-form" onSubmit={handleLogin}>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        id="username"
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Enter Username"
+                        required
+                    />
 
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter Password"
-                    required
-                />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter Password"
+                        required
+                    />
 
-                <button type="submit">Login</button>
-            </form>
-            <p className="register-link">
-                Not a member? <Link to="/register">Register now!</Link>
-            </p>
+                    <button type="submit">Login</button>
+                </form>
+                <p className="register-link">
+                    Not a member? <Link to="/register">Register now!</Link>
+                </p>
+            </div>
         </div>
     );
 };

@@ -1,37 +1,77 @@
-.footer{
-    position: fixed;     /* take it out of normal flow and pin it */
-    bottom: 0;           /* stick to bottom edge */
-    left: 0;             /* span full width */
-    right: 0;
-    background-color: gainsboro;
-    text-align: center;
-    padding: 10px;
-    border-top: 2px solid black;
-    z-index: 1000;       /* ensure it appears above other elements */
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+/*  header wrapper */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid black;
-    padding: 15px;
-    font-family: Arial, sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #9f9b9b;
+	border-bottom: 2px solid #fff;
+	padding: 15px 380px;
 }
 
-.header-left, .header-center, .header-right {
-    display: flex;
-    align-items: center;
+/*  logo styling */
+.header-left {
+	flex: 0 0 auto;
+}
+.header-logo {
+	height: 40px;
+	width: auto;
+}
+
+/*  nav links  */
+.header-center {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+	flex: 1 1 auto;
+	justify-content: center;
 }
 
 .header-item {
-    margin: 0 10px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+	text-decoration: none;
+	color: #fbf9f9;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	font-size: 1rem;
+	padding-bottom: 4px;
+	transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
 }
 
-.language{
-    margin-left: 5px;
-    font-size: 0.9rem;
+
+/* active link styling */
+.header-item.active {
+	color: #f24fc7;
+	border-bottom: 3px solid #f24fc7;
+}
+
+/* ===== footer styling ===== */
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #9f9b9b;
+	border-top: 2px solid #fff;
+	padding: 10px;
+	z-index: 1000;
+
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	color: #fbf9f9;
+	font-size: 1rem;
+	text-align: center;
+}
+
+.footer p {
+	margin: 4px 0;
+}
+
+.footer a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.footer a:hover {
+	text-decoration: underline;
 }

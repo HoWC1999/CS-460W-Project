@@ -7,6 +7,7 @@ import com.tennisclub.service.AuditLogService;
 import com.tennisclub.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,11 +23,14 @@ public class AuthController {
   @Autowired
   private AuditLogService auditLogService;
 
+  private PasswordEncoder encoder;
   @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     try {
       // Use getPassword() to retrieve the raw password
+
       JWTToken token = authService.login(loginRequest.getUsername(), loginRequest.getPassword());
+
       auditLogService.logEvent(
         "SYSTEM",
         "DELETE: ",

@@ -20,7 +20,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 import Events from "./pages/Events";
 import PurchaseGuestPassPage from "./pages/account/PurchaseGuestPassPage";
+<<<<<<< HEAD
+=======
 import AuditLogs from "./pages/AuditLogs";
+>>>>>>> parent of 6d2f96b (Merge pull request #4 from HoWC1999/only-frontend)
 
 function App() {
   return (

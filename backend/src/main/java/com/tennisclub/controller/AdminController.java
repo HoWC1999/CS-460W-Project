@@ -4,7 +4,9 @@ import com.tennisclub.dto.RoleAssignmentDTO;
 import com.tennisclub.model.GuestPass;
 import com.tennisclub.model.User;
 import com.tennisclub.repository.GuestPassRepository;
+
 import com.tennisclub.service.AuditLogService;
+
 import com.tennisclub.service.GuestPassService;
 import com.tennisclub.service.UserService;
 import org.slf4j.Logger;
@@ -46,6 +48,7 @@ public class AdminController {
         "VIEW_USERS",
         "Fetched all users, count=" + users.size()
       );
+
       logger.info("Fetched {} users", users.size());
       return ResponseEntity.ok(users);
     } catch(Exception e) {
@@ -59,6 +62,7 @@ public class AdminController {
     try {
       boolean result = userService.deleteUser(id);
       if (result) {
+
         auditLogService.logEvent(
           "SYSTEM",
           "DELETE: ",

@@ -26,6 +26,7 @@ public class UserController {
   private JwtUtil jwtUtil;
   private AuditLogService auditLogService;
 
+
   @PostMapping("/register")
   public ResponseEntity<?> register(@RequestBody User user) {
     try {
@@ -66,16 +67,12 @@ public class UserController {
 
 
   @PutMapping("/update/{id}")
-  public ResponseEntity<?> updateProfile(@PathVariable int id, @RequestBody UpdateUserDTO updateData, Authentication auth) {
+
+  public ResponseEntity<?> updateProfile(@PathVariable int id, @RequestBody UpdateUserDTO updateData) {
     try {
       logger.info("Updating profile for user id: {}", id);
       User updatedUser = userService.updateProfile(id, updateData);
       logger.info("Profile updated: {}", updatedUser);
-      auditLogService.logEvent(
-        auth.getName(),
-        "UPDATE_PROFILE",
-        "Updated own profile"
-      );
       return ResponseEntity.ok(updatedUser);
     } catch (Exception e) {
       logger.error("Update failed for user id {}: {}", id, e.getMessage());
