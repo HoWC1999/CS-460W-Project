@@ -1,4 +1,10 @@
 /* The outer container for the homepage */
+.homepage {
+    background: url("../images/img3.jpg") no-repeat center center;
+    min-height: calc(100vh - 120px);
+    background-size: cover;
+}
+
 .homepage-container {
     /* If you want a background on the entire page, do it here or in body */
     margin: 0;
@@ -12,6 +18,7 @@
     min-height: 90vh;
     z-index: 0;
     overflow: hidden;     /* Ensures the blurred background doesn't cause scrollbars */
+    
 }
 
 .main-content::before {

@@ -20,7 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 import Events from "./pages/Events";
 import PurchaseGuestPassPage from "./pages/account/PurchaseGuestPassPage";
-import AuditLogs from "./pages/AuditLogs";
+import AboutUs from './pages/AboutUs';
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
           <Route path="/account/guestpass" element={<PurchaseGuestPassPage />} />
           <Route path="/billing" element={<MemberBillingPage />}/>
           <Route path="/Events" element={<Events />}/>
+          <Route path="/about" element={<AboutUs />} />
           {/* Treasurer Routes */}
           <Route
             path="/treasurer"
@@ -86,10 +87,6 @@ function App() {
                 <AdminEventManagementPage />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="/admin/audit-logs"
-            element={<AuditLogs />}
           />
         </Routes>
 
