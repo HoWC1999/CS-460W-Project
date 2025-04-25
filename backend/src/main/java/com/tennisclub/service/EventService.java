@@ -12,6 +12,7 @@ public class EventService {
   @Autowired
   private EventRepository eventRepository;
 
+
   public Events createEvent(Events event) {
     if(event.getTitle() == null || event.getTitle().isEmpty()) {
       throw new RuntimeException("Event title is required");

@@ -7,6 +7,7 @@ import com.tennisclub.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,9 +15,11 @@ public class DataSeeder implements CommandLineRunner {
 
   private static final Logger logger = LoggerFactory.getLogger(DataSeeder.class);
   private final UserRepository userRepository;
+  private final PasswordEncoder passwordEncoder;
 
-  public DataSeeder(UserRepository userRepository) {
+  public DataSeeder(UserRepository userRepository, PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
   }
 
   @Override
@@ -30,7 +33,7 @@ public class DataSeeder implements CommandLineRunner {
       admin.setEmail(adminEmail);
       admin.setFullName("Admin");
       // Use the already hashed password provided for the admin
-      admin.setPasswordHash("$2a$10$Tqv7Lrq47DrEKAJGCUIwEOKnPkc8ur1dcQVkaR6T.j7yioKsFMe2C");
+      admin.setPasswordHash(passwordEncoder.encode("password"));
       admin.setPhoneNumber("1111111111");
       admin.setRole(Role.valueOf("ADMIN"));
       admin.setStatus("Active");

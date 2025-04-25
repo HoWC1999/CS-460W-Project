@@ -20,6 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 import Events from "./pages/Events";
 import PurchaseGuestPassPage from "./pages/account/PurchaseGuestPassPage";
+import AuditLogs from "./pages/AuditLogs";
 
 function App() {
   return (
@@ -85,6 +86,10 @@ function App() {
                 <AdminEventManagementPage />
               </ProtectedRoute>
             }
+          />
+          <Route
+            path="/admin/audit-logs"
+            element={<AuditLogs />}
           />
         </Routes>
 

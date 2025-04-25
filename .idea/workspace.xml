@@ -5,30 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb215dea-b5dd-46cc-85f7-198750a6c4b8" name="Changes" comment="Controller logic">
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/config/TestSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/controller/FinancialControllerIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/controller/ReservationControllerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AdminAuditController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/AuditLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/AuditLogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/AuditLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/AuditLogs.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/services/auditService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/AuditService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/EventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/util/DataSeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/util/DataSeeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/controller/AuthControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/controller/AuthControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/service/FinancialServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/service/FinancialServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/config/SecurityConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/config/SecurityConfig$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/AdminController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/CourtReservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/CourtReservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/FinancialService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/FinancialService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/GuestPass.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/model/GuestPass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/repository/GuestPassRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/repository/GuestPassRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/AuditService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/EventService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/GuestPassService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/GuestPassService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/NotificationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/service/ReservationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/util/DataSeeder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/tennisclub/util/DataSeeder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.controller.AuthControllerIntegrationTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.controller.AuthControllerIntegrationTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.AuthServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.AuthServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.FinancialServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.FinancialServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.ReservationServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.ReservationServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.UserServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/TEST-com.tennisclub.service.UserServiceTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.controller.AuthControllerIntegrationTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.controller.AuthControllerIntegrationTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.service.AuthServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.service.AuthServiceTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.service.ReservationServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.service.ReservationServiceTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.service.UserServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/surefire-reports/com.tennisclub.service.UserServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,9 +95,11 @@
     "JUnit.java in CS-460W-Project.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.CS-460W-Project [clean,-DforkCount=0...].executor": "Debug",
+    "Maven.CS-460W-Project [clean,install...].executor": "Debug",
     "Maven.CS-460W-Project [clean,install].executor": "Run",
     "Maven.CS-460W-Project [clean].executor": "Run",
     "Maven.CS-460W-Project [compile,-DforkCount=0...].executor": "Debug",
+    "Maven.CS-460W-Project [compile].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -127,6 +134,12 @@
     ],
     "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
       "H2"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
+      "H2"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "H2"
     ]
   }
 }]]></component>
@@ -135,11 +148,11 @@
       <recent name="C:\Users\death\Documents\CS-460W-Project\backend\src\test\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\death\Documents\CS-460W-Project\backend\src\main\resources" />
-      <recent name="C:\Users\death\Documents\CS-460W-Project\backend" />
-      <recent name="C:\Users\death\Documents\CS-460W-Project\frontend" />
-      <recent name="C:\Users\death\Documents\CS-460W-Project\frontend\src\components" />
-      <recent name="C:\Users\death\Documents\CS-460W-Project\frontend\src" />
+      <recent name="C:\Users\death\Documents\CS-460W-Project\frontend\src\services" />
+      <recent name="C:\Users\death\Documents\CS-460W-Project\frontend\src\pages" />
+      <recent name="C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\service" />
+      <recent name="C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model" />
+      <recent name="C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\repository" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.TennisClubApplication">
@@ -191,8 +204,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AuthServiceTest" />
         <item itemvalue="JUnit.java in CS-460W-Project" />
+        <item itemvalue="JUnit.AuthServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -206,8 +219,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -246,6 +259,11 @@
       <workItem from="1744403617958" duration="6536000" />
       <workItem from="1744488638128" duration="10985000" />
       <workItem from="1744502045775" duration="5967000" />
+      <workItem from="1745356886135" duration="5609000" />
+      <workItem from="1745522386137" duration="1874000" />
+      <workItem from="1745524277688" duration="2649000" />
+      <workItem from="1745527180602" duration="2886000" />
+      <workItem from="1745530161759" duration="6411000" />
     </task>
     <task id="LOCAL-00001" summary="Controller logic">
       <option name="closed" value="true" />
@@ -285,6 +303,11 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="IllegalStateException9620_DebugLabel" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

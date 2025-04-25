@@ -4,6 +4,7 @@ import com.tennisclub.dto.RoleAssignmentDTO;
 import com.tennisclub.model.GuestPass;
 import com.tennisclub.model.User;
 import com.tennisclub.repository.GuestPassRepository;
+import com.tennisclub.service.AuditLogService;
 import com.tennisclub.service.GuestPassService;
 import com.tennisclub.service.UserService;
 import org.slf4j.Logger;
@@ -22,14 +23,17 @@ public class AdminController {
 
   private final GuestPassService guestPassService;
 
-  private final com.tennisclub.repository.GuestPassRepository GuestPassRepository;
+  private final AuditLogService auditLogService;
+
+  private final GuestPassRepository guestPassRepository;
 
   private final UserService userService;
 
-  public AdminController(UserService userService, GuestPassService guestPassService, com.tennisclub.repository.GuestPassRepository guestPassRepository) {
-    this.guestPassService = guestPassService;
-    GuestPassRepository = guestPassRepository;
+  public AdminController(UserService userService, GuestPassService guestPassService, AuditLogService auditLogService, GuestPassRepository guestPassRepository) {
     this.userService = userService;
+    this.guestPassService = guestPassService;
+    this.auditLogService = auditLogService;
+    this.guestPassRepository = guestPassRepository;
   }
 
   // GET all users
@@ -37,6 +41,11 @@ public class AdminController {
   public ResponseEntity<?> getAllUsers() {
     try {
       List<User> users = userService.getAllUsers();
+      auditLogService.logEvent(
+        "SYSTEM",
+        "VIEW_USERS",
+        "Fetched all users, count=" + users.size()
+      );
       logger.info("Fetched {} users", users.size());
       return ResponseEntity.ok(users);
     } catch(Exception e) {
@@ -50,6 +59,11 @@ public class AdminController {
     try {
       boolean result = userService.deleteUser(id);
       if (result) {
+        auditLogService.logEvent(
+          "SYSTEM",
+          "DELETE: ",
+          "Deleted user id=" + id
+        );
         return ResponseEntity.ok("User deleted successfully.");
       } else {
         return ResponseEntity.badRequest().body("User deletion failed.");

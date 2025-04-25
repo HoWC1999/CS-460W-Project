@@ -2,6 +2,7 @@ package com.tennisclub.controller;
 
 import com.tennisclub.dto.UpdateUserDTO;
 import com.tennisclub.model.User;
+import com.tennisclub.service.AuditLogService;
 import com.tennisclub.service.UserService;
 import com.tennisclub.util.JwtUtil;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ public class UserController {
 
   @Autowired
   private JwtUtil jwtUtil;
+  private AuditLogService auditLogService;
 
   @PostMapping("/register")
   public ResponseEntity<?> register(@RequestBody User user) {
@@ -64,11 +66,16 @@ public class UserController {
 
 
   @PutMapping("/update/{id}")
-  public ResponseEntity<?> updateProfile(@PathVariable int id, @RequestBody UpdateUserDTO updateData) {
+  public ResponseEntity<?> updateProfile(@PathVariable int id, @RequestBody UpdateUserDTO updateData, Authentication auth) {
     try {
       logger.info("Updating profile for user id: {}", id);
       User updatedUser = userService.updateProfile(id, updateData);
       logger.info("Profile updated: {}", updatedUser);
+      auditLogService.logEvent(
+        auth.getName(),
+        "UPDATE_PROFILE",
+        "Updated own profile"
+      );
       return ResponseEntity.ok(updatedUser);
     } catch (Exception e) {
       logger.error("Update failed for user id {}: {}", id, e.getMessage());
