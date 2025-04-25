@@ -1,0 +1,39 @@
+--BOOKING INFO--
+-DELIVERABLE 1-
+In making groups, type the name and select the user if they are registered 
+If you have the same names, use the email
+The booking page should have dates, times, and courts
+The minimum booking time is an hour and a half
+Max booking time is 3 hours
+2 people reservation is 90-180 minutes
+Court occupancy data is to be saved on the backend, and all requests compared with that
+No more than 2 bookings per individual per day
+Bookings must be separated by at least an hour
+The earliest booking time is 6:30 am
+Latest booking time is 8:30 pm
+Teammates can book back-to-back. allowed as long as it is in different names 
+For doubles, a minimum of three players 
+After clicking people to play, there should be a guest option
+
+-DELIVERABLE 2-
+All people added in game should get email when a court is booked with them added
+all players should get emails when there are reservation edits
+only the person who made reservation can edit reservation 
+(exception being that if someone makes a reservation, only person who got a sub can edit too)
+
+--ACCOUNT CREATION and BILLING--
+Option to opt in or out of the directory
+Membership fee is $400/ yr one-time fee
+Bills are sent in the first week of March to email on file
+10% charged as a late fee 
+Access for up to three months after non-renewal
+New accounts can be created either by Admin or the User
+
+--GUEST POLICY--
+Can play as guest max 4 times per month
+Guest fee of $5 a month
+Whoever clicks Add Guest pays the guest fee
+Save guest info (name and email) for promotional purposes
+
+--BILLING--
+Treasurers can see more in their member directory

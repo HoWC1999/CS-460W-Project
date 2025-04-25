@@ -1,0 +1,174 @@
+1. Introduction
+1.1 Purpose
+Objective: Define the purpose of the SRS document for the Tennis Club Management System.
+Target Audience: Membership chair, billing staff (treasurer), system developers, project managers, and stakeholders.
+1.2 Scope
+System Overview: Describe the system that manages court reservations, financial accounts, and member information for a tennis club with 12 courts.
+Key Capabilities:
+Court booking and scheduling
+Financial transaction tracking and billing
+Member data management
+Role-based login access
+Graphical User Interface (GUI) design
+Inclusions/Exclusions: Clearly state what the system will and will not do (e.g., it does not include court maintenance scheduling).
+1.3 Definitions, Acronyms, and Abbreviations
+Definitions: Define domain-specific terms (e.g., "court reservation," "billing cycle").
+Acronyms: Provide a list such as GUI (Graphical User Interface), CRUD (Create, Read, Update, Delete), DBMS (Database Management System).
+Abbreviations: Explain abbreviations used throughout the document.
+1.4 References
+List all documents, standards (e.g., IEEE Standard 830), and external materials referenced in the SRS.
+1.5 Overview
+Provide a summary of the remaining sections in the document and explain how the document is organized.
+2. General Description
+2.1 Product Perspective
+System Context: Describe whether the product is a standalone application or part of a larger ecosystem.
+Interfaces: Identify any existing systems (e.g., existing club management systems) and describe how the new system will interface with hardware (e.g., PCs, tablets) and software (e.g., database management systems).
+2.2 Product Functions
+High-Level Functions:
+Manage court reservations
+Manage member information (registration, updates, deletion)
+Process financial transactions (billing, payments, refunds)
+Provide secure login and role-based access control
+Deliver a user-friendly GUI
+Data Management: All data will be stored in and managed by a backend database.
+2.3 User Characteristics
+User Roles:
+Membership Chair: Oversees member data and reservations.
+Billing Staff (Treasurer): Manages financial accounts and billing processes.
+Members: Can view and book reservations, update personal information, and make payments.
+Experience & Expertise: Outline expectations regarding user familiarity with technology and any training requirements.
+2.4 General Constraints
+Regulatory Requirements: Any legal or regulatory standards (e.g., data privacy laws) that must be followed.
+Hardware Constraints: Minimum system requirements for running the Java application and associated database.
+Software Constraints: Limitations imposed by the chosen Java development environment and database technology.
+2.5 Assumptions and Dependencies
+Assumptions:
+Availability of a supported Java Runtime Environment.
+Availability of a reliable database system (e.g., MySQL, PostgreSQL).
+Internet connectivity for any remote features, if applicable.
+Dependencies:
+Dependency on third-party libraries or frameworks for GUI design (e.g., JavaFX or Swing).
+Dependency on external modules (e.g., payment processing APIs).
+3. Specific Requirements
+3.1 Functional Requirements
+3.1.1 Court Reservation Management
+Introduction:
+Allow members to view available courts and make reservations.
+Inputs:
+Member ID, selected court number, date, and time.
+Processing:
+Validate availability, check for conflicts, and update the database.
+Outputs:
+Reservation confirmation, updated schedule, and error messages if conflicts occur.
+3.1.2 Financial Account Management
+Introduction:
+Manage billing, payments, and account balances.
+Inputs:
+Member ID, payment details, billing period information.
+Processing:
+Calculate dues, update financial records, generate invoices.
+Outputs:
+Payment receipts, billing statements, and alerts for overdue accounts.
+3.1.3 Member Information Management
+Introduction:
+Provide full CRUD operations for managing member profiles.
+Inputs:
+Personal details, membership status, contact information.
+Processing:
+Validate data, handle duplicate entries, and update records.
+Outputs:
+Confirmation messages, error notifications, and updated member profiles.
+3.1.4 User Authentication and Access Control
+Introduction:
+Secure login functionality for different user roles (membership chair, billing staff, and members).
+Inputs:
+Username, password, and possibly security tokens.
+Processing:
+Authenticate users, verify role-based permissions, and manage session tokens.
+Outputs:
+Access granted messages, role-specific dashboards, and error messages for invalid credentials.
+3.2 External Interface Requirements
+3.2.1 User Interfaces
+GUI Requirements:
+A well-designed, intuitive graphical interface developed in Java (using frameworks such as JavaFX or Swing).
+Consistent layout and navigation for all user roles.
+Responsive design considerations (if applicable).
+3.2.2 Hardware Interfaces
+Hardware Compatibility:
+Define minimum and recommended hardware specifications (e.g., CPU, memory, display resolution) for desktop environments.
+3.2.3 Software Interfaces
+Database Interface:
+Interface specifications for connecting to the backend database (e.g., JDBC for Java).
+Third-Party Libraries:
+Specify any third-party libraries or APIs used in the application (e.g., for GUI design, payment processing).
+3.2.4 Communications Interfaces
+Network Protocols:
+Define any network protocols if the system supports remote access or communicates with external services (e.g., HTTP/HTTPS for web services, email notifications).
+3.3 Performance Requirements
+Response Time:
+Reservation lookups, login processes, and financial transaction processing should have defined response times (e.g., under 2 seconds for most operations).
+Concurrency:
+Support for a defined number of simultaneous users (e.g., 50 concurrent sessions).
+Scalability:
+System must be scalable to handle an increase in member base and reservation volume over time.
+3.4 Design Constraints
+3.4.1 Standards Compliance
+Coding Standards:
+The application will adhere to Java coding standards and best practices.
+Industry Standards:
+Compliance with relevant industry standards (e.g., IEEE standards for software engineering).
+3.4.2 Hardware Limitations
+System Requirements:
+Define the minimum hardware requirements for running the application effectively.
+Performance Limitations:
+Considerations for running the database and application server on limited-resource machines.
+3.4.3 Software Limitations
+Development Environment:
+The application will be developed in Java, and may be limited by the capabilities of the chosen Java version and libraries.
+Database Limitations:
+Constraints imposed by the chosen DBMS (e.g., maximum number of connections, storage limits).
+3.5 Quality Attributes
+3.5.1 Availability
+Uptime Requirements:
+Define the expected system availability (e.g., 99.5% uptime).
+Backup and Recovery:
+Outline backup procedures and recovery plans.
+3.5.2 Security
+Data Protection:
+Requirements for data encryption (both at rest and in transit).
+Access Control:
+Strict authentication and authorization mechanisms based on user roles.
+Audit Trails:
+Maintain logs of user activities for security audits.
+3.5.3 Maintainability
+Modular Design:
+The system should be designed in a modular fashion to facilitate easy updates and maintenance.
+Documentation:
+Comprehensive in-code and external documentation is required.
+3.5.4 Usability
+User-Friendliness:
+The GUI should be intuitive and require minimal training.
+Help and Support:
+Built-in help functions and tooltips to guide users.
+3.5.5 Reliability
+Fault Tolerance:
+The system should be able to handle and recover from common errors and failures gracefully.
+Error Handling:
+Clear error messages and fallback procedures should be defined.
+3.5.6 Portability
+Cross-Platform Compatibility:
+While primarily designed for desktop use, consider whether parts of the system should be portable across different operating systems (Windows, macOS, Linux).
+3.6 Other Requirements
+Legal and Regulatory:
+Compliance with data protection laws and any other legal standards relevant to financial transactions and personal data management.
+Training:
+Requirements for user training sessions or documentation to help users become proficient with the system.
+Deployment:
+Deployment considerations such as installation procedures and system updates.
+4. Appendices
+4.1 Glossary
+Provide definitions for technical terms, acronyms, and jargon used in the document.
+4.2 Analysis Models
+Include any diagrams or models (e.g., use case diagrams, data flow diagrams) that support the SRS.
+4.3 Supporting Information
+Any additional information or references that aid in understanding the requirements.
