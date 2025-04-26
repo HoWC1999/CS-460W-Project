@@ -11,6 +11,7 @@ com\tennisclub\model\enums\BillingPlan.class
 com\tennisclub\util\DataSeeder.class
 com\tennisclub\repository\MemberProfileRepository.class
 com\tennisclub\dto\FinancialTransactionDTO.class
+com\tennisclub\controller\AdminAuditController.class
 com\tennisclub\TennisClubApplication.class
 com\tennisclub\model\FinancialReport.class
 com\tennisclub\repository\CourtReservationRepository.class
@@ -21,6 +22,7 @@ com\tennisclub\repository\EventRepository.class
 com\tennisclub\service\AuthService.class
 com\tennisclub\config\SecurityConfig$1.class
 com\tennisclub\model\enums\Events.class
+com\tennisclub\repository\AuditLogRepository.class
 com\tennisclub\controller\AuthController.class
 com\tennisclub\service\EventService.class
 com\tennisclub\model\CourtReservation.class
@@ -40,15 +42,16 @@ com\tennisclub\repository\FinancialReportRepository.class
 com\tennisclub\config\WebMvcConfig.class
 com\tennisclub\exception\GlobalExceptionHandler.class
 com\tennisclub\service\StripePaymentProcessorService.class
+com\tennisclub\service\AuditLogService.class
 com\tennisclub\dto\EventDTO.class
 com\tennisclub\controller\ReservationController.class
 com\tennisclub\model\FinancialTransaction.class
 com\tennisclub\config\SecurityConfig.class
-com\tennisclub\service\AuditService.class
 com\tennisclub\service\FinancialService.class
 com\tennisclub\model\Reconciliation.class
 com\tennisclub\model\BillingTransaction.class
 com\tennisclub\model\enums\Transaction.class
+com\tennisclub\model\AuditLog.class
 com\tennisclub\model\PaymentDetails.class
 com\tennisclub\repository\FinancialTransactionRepository.class
 com\tennisclub\repository\BillingTransactionRepository.class

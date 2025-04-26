@@ -3,3 +3,6 @@
 .idea/vcs.xml
 .idea/sqldialects.xml
 .idea/sqldialects.xml
+/backend/target
+/backend/target/surefire-reports
+/backend/target/classes

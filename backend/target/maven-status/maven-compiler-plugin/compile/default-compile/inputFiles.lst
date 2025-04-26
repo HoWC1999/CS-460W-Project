@@ -13,7 +13,6 @@ C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\se
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\dto\LoginRequest.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\FinancialReport.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\controller\FinancialTransactionController.java
-C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\service\AuditService.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\BillingTransaction.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\dto\EventDTO.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\controller\UserController.java
@@ -23,11 +22,13 @@ C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\mo
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\repository\FinancialReportRepository.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\controller\AdminController.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\repository\MemberProfileRepository.java
+C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\AuditLog.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\service\StripePaymentProcessorService.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\enums\Transaction.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\repository\UserRepository.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\config\WebMvcConfig.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\Court.java
+C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\repository\AuditLogRepository.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\dto\CourtReservationDTO.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\enums\TransactionStatus.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\dto\PaymentRequestDTO.java
@@ -39,9 +40,11 @@ C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\ut
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\enums\Role.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\model\FinancialTransaction.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\service\ReservationService.java
+C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\controller\AdminAuditController.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\util\DataSeeder.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\controller\EventController.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\dto\RegisterRequest.java
+C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\service\AuditLogService.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\dto\ReportCriteriaDTO.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\service\UserService.java
 C:\Users\death\Documents\CS-460W-Project\backend\src\main\java\com\tennisclub\repository\FinancialTransactionRepository.java

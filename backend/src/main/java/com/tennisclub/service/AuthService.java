@@ -16,10 +16,6 @@ public class AuthService {
   @Autowired
   private UserRepository userRepository;
 
-  // Temporarily disable password encoding for testing
-  // @Autowired
-  // private PasswordEncoder passwordEncoder;
-
   @Autowired
   private JwtUtil jwtUtil;
 
