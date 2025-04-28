@@ -1,7 +1,6 @@
 package com.tennisclub.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tennisclub.model.enums.TransactionStatus;
 import lombok.Getter;
 import lombok.Setter;
 

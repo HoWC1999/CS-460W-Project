@@ -38,7 +38,7 @@ public class GuestPassService {
   public GuestPass purchaseGuestPass(int userId) {
     logger.info("Attempting to purchase guest pass for user {}", userId);
 
-    User user = userRepository.findById(userId);
+    User user = userRepository.findByUserId(userId);
     if (user == null) {
       String errorMsg = "User not found for ID: " + userId;
       logger.error(errorMsg);

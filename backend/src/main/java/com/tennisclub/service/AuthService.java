@@ -4,6 +4,8 @@ import com.tennisclub.model.JWTToken;
 import com.tennisclub.model.User;
 import com.tennisclub.repository.UserRepository;
 import com.tennisclub.util.JwtUtil;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ public class AuthService {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+
+
   public JWTToken login(String username, String password) {
     User user = userRepository.findByUsername(username);
     if(user == null) {
@@ -38,7 +42,6 @@ public class AuthService {
   }
 
   public void logout(String token) {
-    // In a stateless JWT system, logout may simply be handled on the client side.
-    // Optionally, implement token blacklisting.
+
   }
 }

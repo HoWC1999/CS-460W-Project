@@ -1,5 +1,6 @@
 package com.tennisclub.dto;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class EventDTO {
@@ -43,8 +44,8 @@ public class EventDTO {
     this.eventDate = eventDate;
   }
 
-  public Date getEventTime() {
-    return eventTime;
+  public Time getEventTime() {
+    return (Time) eventTime;
   }
 
   public void setEventTime(Date eventTime) {

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +35,7 @@ public class FinancialServiceTest {
     testUser = new User("finUser", "pass", "fin@example.com", null, "Active");
     testUser.setUserId(2);
     testUser.setBillingPlan(BillingPlan.MONTHLY);
-    when(userRepository.findById(2)).thenReturn(testUser);
+    when(userRepository.findByUserId(2)).thenReturn(testUser);
   }
 
   @Test

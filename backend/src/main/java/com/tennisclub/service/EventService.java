@@ -1,10 +1,10 @@
 package com.tennisclub.service;
 
+import com.tennisclub.dto.EventDTO;
 import com.tennisclub.model.Events;
 import com.tennisclub.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class EventService {
@@ -12,40 +12,47 @@ public class EventService {
   @Autowired
   private EventRepository eventRepository;
 
-  public Events createEvent(Events event) {
-    if(event.getTitle() == null || event.getTitle().isEmpty()) {
+  public Events createEvent(EventDTO dto) {
+    if (dto.getTitle() == null || dto.getTitle().isBlank()) {
       throw new RuntimeException("Event title is required");
     }
-    // Additional validations can be added here.
+    // Map DTO → Entity
+    Events event = new Events();
+    event.setTitle(dto.getTitle());
+    event.setDescription(dto.getDescription());
+    event.setEventDate(dto.getEventDate());
+    event.setEventTime(dto.getEventTime());
+    event.setLocation(dto.getLocation());
+    // Additional validations could go here
     return eventRepository.save(event);
   }
 
-  public Events updateEvent(int eventId, Events newEventData) {
-    Optional<Events> optionalEvent = eventRepository.findById(eventId);
-    if(!optionalEvent.isPresent()) {
-      throw new RuntimeException("Event not found");
+  public Events updateEvent(int eventId, EventDTO dto) {
+    Events event = eventRepository.findById(eventId)
+      .orElseThrow(() -> new RuntimeException("Event not found"));
+
+    // Patch only non-null DTO fields onto the entity
+    if (dto.getTitle() != null) {
+      event.setTitle(dto.getTitle());
     }
-    Events event = optionalEvent.get();
-    if(newEventData.getTitle() != null) {
-      event.setTitle(newEventData.getTitle());
+    if (dto.getDescription() != null) {
+      event.setDescription(dto.getDescription());
     }
-    if(newEventData.getDescription() != null) {
-      event.setDescription(newEventData.getDescription());
+    if (dto.getEventDate() != null) {
+      event.setEventDate(dto.getEventDate());
     }
-    if(newEventData.getEventDate() != null) {
-      event.setEventDate(newEventData.getEventDate());
+    if (dto.getEventTime() != null) {
+      event.setEventTime(dto.getEventTime());
     }
-    if(newEventData.getEventTime() != null) {
-      event.setEventTime(newEventData.getEventTime());
+    if (dto.getLocation() != null) {
+      event.setLocation(dto.getLocation());
     }
-    if(newEventData.getLocation() != null) {
-      event.setLocation(newEventData.getLocation());
-    }
+
     return eventRepository.save(event);
   }
 
   public boolean cancelEvent(int eventId) {
-    if(!eventRepository.existsById(eventId)) {
+    if (!eventRepository.existsById(eventId)) {
       throw new RuntimeException("Event not found");
     }
     eventRepository.deleteById(eventId);

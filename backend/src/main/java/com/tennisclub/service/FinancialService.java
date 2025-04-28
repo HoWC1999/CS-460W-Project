@@ -79,7 +79,7 @@ public class FinancialService {
   // Charge the annual membership fee.
   public FinancialTransaction chargeAnnualMembershipFee(int userId, BigDecimal amount) {
     try {
-      User user = userRepository.findById(userId);
+      User user = userRepository.findByUserId(userId);
       if (user == null) {
         logger.error("User not found for annual membership fee, userId: {}", userId);
         throw new RuntimeException("User not found");
@@ -103,7 +103,7 @@ public class FinancialService {
   public FinancialTransaction applyLateFee(int userId, BigDecimal baseAmount) {
     try {
       BigDecimal lateFee = baseAmount.multiply(new BigDecimal("0.10"));
-      User user = userRepository.findById(userId);
+      User user = userRepository.findByUserId(userId);
       if (user == null) {
         logger.error("User not found for late fee application, userId: {}", userId);
         throw new RuntimeException("User not found");
@@ -219,7 +219,7 @@ public class FinancialService {
   // Charge the monthly fee (set as pending until paid).
   public FinancialTransaction chargeMonthlyFee(int userId) {
     try {
-      User user = userRepository.findById(userId);
+      User user = userRepository.findByUserId(userId);
       if (user == null) {
         logger.error("User not found for monthly fee, userId: {}", userId);
         throw new RuntimeException("User not found");

@@ -35,7 +35,7 @@ public class DataSeeder implements CommandLineRunner {
       admin.setAddress("20 Beans Way");
       admin.setBillingPlan(BillingPlan.valueOf("MONTHLY")); // Ensure your User class has this property.
       admin.setEmail(adminEmail);
-      admin.setFullName("Admin");
+      admin.setFullName("Admin Johnson");
       // Use the already hashed password provided for the admin
       admin.setPasswordHash("$2a$10$Tqv7Lrq47DrEKAJGCUIwEOKnPkc8ur1dcQVkaR6T.j7yioKsFMe2C");
       admin.setPhoneNumber("1111111111");

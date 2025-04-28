@@ -8,7 +8,8 @@ const UpdateProfilePage = () => {
     const [updateData, setUpdateData] = useState({
         username: '',
         email: '',
-        password: ''
+        password: '',
+        address: ''
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -22,7 +23,8 @@ const UpdateProfilePage = () => {
                 setUpdateData({
                     username: data.username || '',
                     email: data.email || '',
-                    password: '' // empty so that if user doesn't provide a new password, backend keeps current
+                    password: '',
+                    address:data.address || ''
                 });
             } catch (err) {
                 console.error("Fetch profile error:", err);
@@ -84,6 +86,11 @@ const UpdateProfilePage = () => {
                   type="password"
                   name="confirmPassword"
                   />
+              <label> Address</label>
+                <input
+                  type="text"
+                  name="address"
+                />
               <p>
                 <button type="submit">Update</button>
               </p>

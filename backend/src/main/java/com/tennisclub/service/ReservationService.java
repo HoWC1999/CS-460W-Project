@@ -101,7 +101,7 @@ public class ReservationService {
    * @return list of reservations
    */
   public List<CourtReservation> getReservationsForUserId(int userId) {
-    Optional<User> user = Optional.ofNullable(userRepository.findById(userId));
+    Optional<User> user = Optional.ofNullable(userRepository.findByUserId(userId));
     return reservationRepository.findByBookedBy(user);
   }
 }

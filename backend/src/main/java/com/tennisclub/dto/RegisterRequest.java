@@ -1,5 +1,6 @@
 package com.tennisclub.dto;
 
+
 public class RegisterRequest {
   private String username;
   private String password;

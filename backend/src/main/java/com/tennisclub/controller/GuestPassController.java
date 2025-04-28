@@ -17,11 +17,11 @@ public class GuestPassController {
 
   private final GuestPassService guestPassService;
 
-  private final GuestPassRepository GuestPassRepository;
+  private final GuestPassRepository guestPassRepository;
 
   public GuestPassController(GuestPassService guestPassService, GuestPassRepository guestPassRepository) {
     this.guestPassService = guestPassService;
-    GuestPassRepository = guestPassRepository;
+    this.guestPassRepository = guestPassRepository;
   }
 
   /**

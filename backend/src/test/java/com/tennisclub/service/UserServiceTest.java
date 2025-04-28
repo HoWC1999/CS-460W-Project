@@ -43,8 +43,8 @@ class UserServiceTest {
 
   @Test
   void updateProfile_userNotFound_shouldThrowException() {
-    // Arrange: Stub findById(2) to simulate that the user is not found.
-    when(userRepository.findById(eq(2))).thenReturn(null);
+    // Arrange: Stub findByUserId(2) to simulate that the user is not found.
+    when(userRepository.findByUserId(eq(2))).thenReturn(null);
 
     UpdateUserDTO updateUserDTO = new UpdateUserDTO();
     updateUserDTO.setUsername("newusername");
@@ -65,13 +65,13 @@ class UserServiceTest {
     updateData.setEmail("new@mail.com");
     updateData.setPassword("newPassword");
 
-    User existingUser = new User();
+    existingUser = new User();
     existingUser.setUserId(userId);
     existingUser.setUsername("oldUsername");
     existingUser.setEmail("old@mail.com");
     // ... initialize other properties as needed
 
-    when(userRepository.findById(eq(userId))).thenReturn(existingUser);
+    when(userRepository.findByUserId(eq(userId))).thenReturn(existingUser);
     when(passwordEncoder.encode(anyString())).thenReturn("hashedNewPassword");
     when(userRepository.save(any(User.class))).thenAnswer(invocation -> invocation.getArgument(0));
 

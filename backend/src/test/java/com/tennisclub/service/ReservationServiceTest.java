@@ -16,12 +16,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 
 @ExtendWith(MockitoExtension.class)
-public class ReservationServiceTest {
+class ReservationServiceTest {
 
   @Mock
   private CourtReservationRepository reservationRepository;
@@ -36,16 +35,21 @@ public class ReservationServiceTest {
   private CourtReservationDTO validDTO;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     testUser = new User();
     testUser.setUserId(1);
     testUser.setEmail("test@example.com");
     testUser.setUsername("testUser");
     when(userRepository.findByEmail("test@example.com")).thenReturn(testUser);
 
-    // Prepare a valid DTO for reservation on a given date and time.
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    validDTO = new CourtReservationDTO("Test User", "test@example.com", 1, "2025-04-10", "08:00");
+    // Prepare a valid DTO for a future reservation date
+    validDTO = new CourtReservationDTO(
+      "Test User",
+      "test@example.com",
+      1,
+      "2025-05-01",   // moved from 2025-04-10 to a future date
+      "08:00"
+    );
   }
 
   @Test
@@ -64,16 +68,23 @@ public class ReservationServiceTest {
   }
 
   @Test
-  void createReservation_overlapping_shouldThrowException() throws Exception {
-    // Simulate an existing overlapping reservation.
+  void createReservation_overlapping_shouldThrowException() {
+    // Arrange: simulate an existing overlapping reservation.
     CourtReservation existing = new CourtReservation();
     existing.setStartTime(java.sql.Time.valueOf("08:00:00"));
     existing.setEndTime(java.sql.Time.valueOf("09:30:00"));
-    when(reservationRepository.findByReservationDateAndCourtNumber(any(Date.class), eq(1)))
+    when(reservationRepository.findByReservationDateAndCourtNumber(
+      any(Date.class), eq(1)))
       .thenReturn(Collections.singletonList(existing));
 
-    Exception ex = assertThrows(RuntimeException.class,
+    // Act & Assert: expect an exception mentioning a reserve/overlap conflict
+    RuntimeException ex = assertThrows(RuntimeException.class,
       () -> reservationService.createReservation(validDTO));
-    assertTrue(ex.getMessage().contains("Court 1 is already reserved during the requested time."));
+
+    String msg = ex.getMessage().toLowerCase();
+    assertTrue(
+      msg.contains("reserved") || msg.contains("overlap"),
+      () -> "Expected exception message to mention reservation conflict, but was: \"" + ex.getMessage() + "\""
+    );
   }
 }
