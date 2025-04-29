@@ -1,0 +1,73 @@
+/* Full-page blurred background between header & footer */
+.assign-role-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px);
+}
+
+.assign-role-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/admin.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+/* Main container holding the form */
+.assign-role-container {
+	position: relative;
+	max-width: 800px;
+	margin: 60px auto;
+	padding: 40px 30px;
+	background: rgba(255,255,255,0.9);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	font-family: 'Montserrat', sans-serif;
+	color: #333;
+}
+
+/* Heading */
+.assign-role-container h2 {
+	margin-bottom: 24px;
+	font-size: 1.8rem;
+}
+
+/* Form layout */
+.assign-role-form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.assign-role-form label {
+	font-weight: bold;
+}
+
+.assign-role-form select,
+.assign-role-form button {
+	padding: 10px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+}
+
+.assign-role-form button {
+	background-color: #218838;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.assign-role-form button:hover {
+	background-color: #1c6e2c;
+}
+
+/* Feedback message */
+.assign-role-container .message {
+	margin-top: 20px;
+	color: #214f4b;
+	font-weight: bold;
+}

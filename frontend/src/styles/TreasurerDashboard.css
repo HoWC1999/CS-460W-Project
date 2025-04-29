@@ -1,0 +1,61 @@
+/* Blurred background covering the page between header and footer */
+.treasurer-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px); /* adjust if your header+footer heights differ */
+}
+
+.treasurer-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/treasurer.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+/* Inner content card to hold links */
+.treasurer-content {
+	position: relative;
+	max-width: 600px;
+	margin: 60px auto; /* gives breathing room at top and bottom */
+	padding: 40px 30px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	text-align: center;
+}
+
+/* Heading style */
+.treasurer-content h2 {
+	margin-bottom: 30px;
+	font-family: 'Montserrat', sans-serif;
+	color: #214f4b;
+}
+
+/* Navigation list styled as cards/buttons */
+.treasurer-nav {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.treasurer-nav li a {
+	display: block;
+	padding: 15px 20px;
+	background-color: #218838;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	border-radius: 6px;
+	transition: background-color 0.3s, transform 0.2s;
+}
+
+.treasurer-nav li a:hover {
+	background-color: #1c6e2c;
+	transform: translateY(-2px);
+}

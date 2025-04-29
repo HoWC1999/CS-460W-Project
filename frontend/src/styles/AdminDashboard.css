@@ -1,0 +1,69 @@
+/* src/styles/AdminDashboard.css */
+
+/* full-page blurred background between header & footer */
+.admin-dashboard-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px); /* adjust if your header+footer height differs */
+}
+
+.admin-dashboard-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/admin.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+/* main container to hold all dashboard UI */
+.admin-dashboard-page > .admin-dashboard-container {
+	position: relative;
+	max-width: 900px;
+	margin: 60px auto;
+	padding: 40px 30px;
+	background: rgba(255,255,255,0.9);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	font-family: 'Montserrat', sans-serif;
+	color: #2c3e50;
+}
+
+/* heading */
+.admin-dashboard-container h2 {
+	margin-bottom: 24px;
+	font-size: 2rem;
+}
+
+/* links list */
+.admin-dashboard-container ul {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 32px;
+}
+
+.admin-dashboard-container li {
+	margin-bottom: 12px;
+}
+
+.admin-dashboard-container a {
+	color: #218838;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.admin-dashboard-container a:hover {
+	text-decoration: underline;
+}
+
+/* passes list */
+.admin-dashboard-container h3 {
+	margin-top: 32px;
+	margin-bottom: 16px;
+	font-size: 1.5rem;
+}
+
+.admin-dashboard-container li strong {
+	font-weight: 600;
+}

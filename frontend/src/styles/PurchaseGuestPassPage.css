@@ -1,0 +1,62 @@
+/* src/styles/PurchaseGuestPassPage.css */
+
+.purchase-guest-pass-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px);
+}
+
+.purchase-guest-pass-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/member.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+.purchase-guest-pass-container {
+	position: relative;
+	max-width: 480px;
+	margin: 80px auto;
+	padding: 30px 25px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	font-family: 'Montserrat', sans-serif;
+	color: #2c3e50;
+	text-align: center;
+}
+
+.purchase-guest-pass-container h2 {
+	margin-bottom: 15px;
+	font-size: 1.8rem;
+}
+
+.purchase-guest-pass-container p {
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+
+.purchase-guest-pass-container button {
+	padding: 12px 20px;
+	background-color: #218838;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.1s;
+}
+
+.purchase-guest-pass-container button:hover {
+	background-color: #1c6e2c;
+	transform: translateY(-1px);
+}
+
+.purchase-guest-pass-container .message {
+	margin-top: 20px;
+	color: #14532d;
+	font-weight: 500;
+}
