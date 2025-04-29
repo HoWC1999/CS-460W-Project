@@ -1,16 +1,30 @@
 package com.tennisclub.service;
 
 import com.tennisclub.dto.EventDTO;
+import com.tennisclub.dto.RegistrationRequest;
+import com.tennisclub.model.EventRegistration;
 import com.tennisclub.model.Events;
+import com.tennisclub.model.User;
+import com.tennisclub.repository.EventRegistrationRepository;
 import com.tennisclub.repository.EventRepository;
+import com.tennisclub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class EventService {
 
   @Autowired
   private EventRepository eventRepository;
+
+  @Autowired
+  private EventRegistrationRepository registrationRepository;
+
+  @Autowired
+  private UserRepository userRepository;
 
   public Events createEvent(EventDTO dto) {
     if (dto.getTitle() == null || dto.getTitle().isBlank()) {
@@ -63,4 +77,37 @@ public class EventService {
     return eventRepository.findById(eventId)
       .orElseThrow(() -> new RuntimeException("Event not found"));
   }
+  /**
+   * Register a user for a given event.
+   * @param eventId the target event
+   * @param req      contains the userId
+   * @return created EventRegistration
+   */
+  @Transactional
+  public EventRegistration registerUserForEvent(int eventId, RegistrationRequest req) {
+    Events event = eventRepository.findById(eventId)
+      .orElseThrow(() -> new RuntimeException("Event not found"));
+
+    User user = userRepository.findById(req.getUserId())
+      .orElseThrow(() -> new RuntimeException("User not found"));
+
+    // Prevent double‐registration
+    if (registrationRepository.existsByEvent_EventIdAndUser_UserId(eventId, req.getUserId())) {
+      throw new RuntimeException("User already registered for this event");
+    }
+
+    EventRegistration reg = new EventRegistration();
+    reg.setEvent(event);
+    reg.setUser(user);
+    // reg.registeredOn is auto‐set
+    return registrationRepository.save(reg);
+  }
+
+  /**
+   * List all registrations for an event.
+   */
+  public List<EventRegistration> getRegistrationsForEvent(int eventId) {
+    return registrationRepository.findByEvent_EventId(eventId);
+  }
+
 }

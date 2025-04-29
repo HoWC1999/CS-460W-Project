@@ -1,6 +1,8 @@
 package com.tennisclub.controller;
 
 import com.tennisclub.dto.EventDTO;
+import com.tennisclub.dto.RegistrationRequest;
+import com.tennisclub.model.EventRegistration;
 import com.tennisclub.model.Events;
 import com.tennisclub.repository.EventRepository;
 import com.tennisclub.service.EventService;
@@ -86,6 +88,43 @@ public class EventController {
       return ResponseEntity
         .status(500)
         .body("Error fetching events: " + e.getMessage());
+    }
+  }
+  /**
+   * POST /api/events/{id}/signup
+   * Body: { "userId": 123 }
+   */
+  @PostMapping("/{id}/signup")
+  public ResponseEntity<?> signup(@PathVariable("id") int eventId,
+                                  @RequestBody RegistrationRequest req) {
+    try {
+      EventRegistration registration =
+        eventService.registerUserForEvent(eventId, req);
+      logger.info("User {} signed up for event {}", req.getUserId(), eventId);
+      return ResponseEntity.ok(registration);
+    } catch (Exception e) {
+      logger.error("Signup failed for user {} on event {}: {}",
+        req.getUserId(), eventId, e.getMessage());
+      return ResponseEntity
+        .badRequest()
+        .body("Signup failed: " + e.getMessage());
+    }
+  }
+
+  /**
+   * GET /api/events/{id}/registrations
+   * List all signups for an event.
+   */
+  @GetMapping("/{id}/registrations")
+  public ResponseEntity<?> listRegistrations(@PathVariable("id") int eventId) {
+    try {
+      List<EventRegistration> regs =
+        eventService.getRegistrationsForEvent(eventId);
+      return ResponseEntity.ok(regs);
+    } catch (Exception e) {
+      return ResponseEntity
+        .status(500)
+        .body("Could not fetch registrations: " + e.getMessage());
     }
   }
 }

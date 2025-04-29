@@ -1,63 +1,104 @@
-import React, { useEffect, useState } from 'react';
+// src/pages/Events.jsx
+import React, { useContext, useEffect, useState } from 'react';
 import '../styles/Events.css';
-
-const sampleEvents = [
-	{
-		id: 1,
-		title: 'Grand Opening of Our New Courts',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.',
-		date: '2025-05-01',
-		time: '10:00 AM',
-		location: 'Main Tennis Complex'
-	},
-	{
-		id: 2,
-		title: 'All-Day Free Play',
-		description: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in.',
-		date: '2025-05-07',
-		time: '8:00 AM – 5:00 PM',
-		location: 'All Courts'
-	},
-	{
-		id: 3,
-		title: 'Weekend Club Mixer',
-		description: 'Donec ullamcorper nulla non metus auctor fringilla. Etiam porta sem malesuada magna mollis euismod.',
-		date: '2025-05-14',
-		time: '2:00 PM – 6:00 PM',
-		location: 'Court 5 & 6'
-	}
-];
+import {
+  getAllEvents,
+  getEventRegistrations,
+  signupForEvent
+} from '../services/eventService';
+import { AuthContext } from '../context/AuthContext';
 
 const Events = () => {
-	const [events, setEvents] = useState([]);
+  const [events, setEvents]           = useState([]);
+  const [registrations, setRegistrations] = useState({}); // { [eventId]: [EventRegistration] }
+  const [loading, setLoading]         = useState(true);
+  const [error, setError]             = useState('');
+  const { user }                      = useContext(AuthContext);
 
-	// simulate fetching from your API
-	useEffect(() => {
-		setEvents(sampleEvents);
-	}, []);
+  useEffect(() => {
+    async function loadAll() {
+      try {
+        // 1) fetch events
+        const evts = await getAllEvents();
+        setEvents(evts);
 
-	return (
-		<div className="events-page">
-			<div className="events-container">
-				<h2 className="events-header">Upcoming Events</h2>
-				{events.map((event, idx) => (
-					<div
-						key={event.id}
-						className="event-card"
-						style={{ '--order': idx }}
-					>
-						<div className="event-meta">
-							<span className="event-date">{event.date}</span>
-							<span className="event-time">{event.time}</span>
-							<span className="event-location">{event.location}</span>
-						</div>
-						<h3 className="event-title">{event.title}</h3>
-						<p className="event-description">{event.description}</p>
-					</div>
-				))}
-			</div>
-		</div>
-	);
+        // 2) fetch registrations in parallel
+        const regsArrays = await Promise.all(
+          evts.map(evt => getEventRegistrations(evt.eventId))
+        );
+        const map = {};
+        evts.forEach((evt, i) => {
+          map[evt.eventId] = regsArrays[i];
+        });
+        setRegistrations(map);
+      } catch (err) {
+        console.error('Error loading events or registrations', err);
+        setError(typeof err === 'string' ? err : 'Unable to load events');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadAll();
+  }, []);
+
+  const handleSignup = async (eventId) => {
+    if (!user) {
+      alert('Please log in to sign up.');
+      return;
+    }
+    try {
+      await signupForEvent(eventId, { userId: user.userId });
+      // re-fetch this event’s registrations
+      const updated = await getEventRegistrations(eventId);
+      setRegistrations(regs => ({ ...regs, [eventId]: updated }));
+      alert('Successfully signed up!');
+    } catch (e) {
+      alert('Error signing up: ' + (typeof e === 'string' ? e : e.message));
+    }
+  };
+
+  if (loading) return <p>Loading events…</p>;
+  if (error)   return <p className="error">{error}</p>;
+
+  return (
+    <div className="events-page">
+      <div className="events-container">
+        <h2 className="events-header">Upcoming Events</h2>
+        {events.length === 0 && <p>No upcoming events.</p>}
+        {events.map((evt, idx) => (
+          <div
+            key={evt.eventId}
+            className="event-card"
+            style={{ '--order': idx }}
+          >
+            <div className="event-meta">
+              <span className="event-date">{evt.eventDate}</span>
+              <span className="event-time">{evt.eventTime}</span>
+              <span className="event-location">{evt.location}</span>
+            </div>
+            <h3 className="event-title">{evt.title}</h3>
+            <p className="event-description">{evt.description}</p>
+
+            <button onClick={() => handleSignup(evt.eventId)}>
+              Sign Up
+            </button>
+
+            {registrations[evt.eventId]?.length > 0 && (
+              <div className="event-registrations">
+                <h4>Registered Users:</h4>
+                <ul>
+                  {registrations[evt.eventId].map(reg => (
+                    <li key={reg.id}>{reg.user.username}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Events;

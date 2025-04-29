@@ -11,7 +11,6 @@ import java.util.Date;
 public class JwtUtil {
 
   // Generate a secure key for HS512 using the new key builder available in JJWT 0.12.0.
-  // This replaces the deprecated secretKeyFor() helper method.
   private static final SecretKey key = Jwts.SIG.HS512.key().build();
 
   // Token expiration time: 1 hour (3600000 milliseconds)
@@ -27,7 +26,7 @@ public class JwtUtil {
     return Jwts.builder()
       .subject(username)
       .claim("role", role)// add role as a claim
-      .signWith(key, SignatureAlgorithm.HS512)
+      .signWith(key)
       .compact();
   }
 
