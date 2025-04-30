@@ -1,5 +1,6 @@
 package com.tennisclub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name = "court_reservations")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CourtReservation {
 
   @Id

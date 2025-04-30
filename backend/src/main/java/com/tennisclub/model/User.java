@@ -1,5 +1,6 @@
 package com.tennisclub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tennisclub.model.enums.BillingPlan;
 import com.tennisclub.model.enums.Role;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
   @Transient

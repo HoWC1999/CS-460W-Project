@@ -1,120 +1,80 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// src/pages/account/MyAccountPage.jsx
+import React, { useContext, useEffect, useState } from 'react';
 import { getMyProfile } from '../../services/userService';
-import { getMyReservations } from '../../services/reservationService';
+import {
+  getMyReservations,
+  cancelReservation
+} from '../../services/reservationService';
 import { AuthContext } from '../../context/AuthContext';
 import '../../styles/MyAccountPage.css';
 
 const MyAccountPage = () => {
-	const [profile, setProfile] = useState(null);
-	const [reservations, setReservations] = useState([]);
-	const [error, setError] = useState(null);
-	const [resError, setResError] = useState(null);
-	const { logout } = useContext(AuthContext);
-	const navigate = useNavigate();
+  const [profile, setProfile] = useState(null);
+  const [reservations, setReservations] = useState([]);
+  const [error, setError] = useState(null);
+  const { logout } = useContext(AuthContext);
 
-	const handleLogout = () => {
-		logout();
-		navigate("/");
-	};
+  // Fetch profile once
+  useEffect(() => {
+    getMyProfile()
+      .then(setProfile)
+      .catch(() => setError('Unable to fetch profile'));
+  }, []);
 
-	useEffect(() => {
-		const fetchProfile = async () => {
-			try {
-				const data = await getMyProfile();
-				setProfile(data);
-			} catch (err) {
-				setError('Unable to fetch profile.');
-			}
-		};
-		fetchProfile();
-	}, []);
+  // Whenever profile loads, fetch that user’s reservations
+  useEffect(() => {
+    if (profile?.userId) {
+      getMyReservations(profile.userId)
+        .then(setReservations)
+        .catch(() => setError('Unable to fetch reservations'));
+    }
+  }, [profile]);
 
-	useEffect(() => {
-		if (profile && profile.userId) {
-			const fetchReservations = async () => {
-				try {
-					const data = await getMyReservations(profile.userId);
-					setReservations(data);
-				} catch (err) {
-					setResError('Unable to fetch reservations.');
-				}
-			};
-			fetchReservations();
-		}
-	}, [profile]);
+  const handleCancel = async (reservationId) => {
+    if (!window.confirm('Cancel this reservation?')) return;
+    try {
+      await cancelReservation(reservationId);
+      // remove from list
+      setReservations(res =>
+        res.filter(r => r.reservationId !== reservationId)
+      );
+    } catch (e) {
+      alert('Cancellation failed: ' + e);
+    }
+  };
 
-	if (error) {
-		return (
-			<div className="my-account-page">
-				<div className="my-account-container">
-					<p className="error">{error}</p>
-				</div>
-			</div>
-		);
-	}
-	if (!profile) {
-		return (
-			<div className="my-account-page">
-				<div className="my-account-container">
-					<p>Loading profile...</p>
-				</div>
-			</div>
-		);
-	}
+  if (error) return <p className="error">{error}</p>;
+  if (!profile) return <p>Loading profile…</p>;
 
-	return (
-		<div className="my-account-page">
-			<div className="my-account-container">
-				<h2>My Account</h2>
+  return (
+    <div className="my-account-page">
+      <h2>My Account</h2>
+      <p><strong>Username:</strong> {profile.username}</p>
+      <p><strong>Email:</strong> {profile.email}</p>
 
-				<div className="profile">
-					<div className="profile-item">
-						<strong>Username:</strong> {profile.username}
-					</div>
-					<div className="profile-item">
-						<strong>Email:</strong> {profile.email}
-					</div>
-					<div className="profile-item">
-						<strong>Status:</strong> {profile.status}
-					</div>
-				</div>
-
-				<div className="actions">
-					<Link to="/account/UpdateProfilePage" className="action-link">
-						Update Profile
-					</Link>
-					<Link to="/billing" className="action-link">
-						Billing
-					</Link>
-					<Link to="/account/guestpass" className="action-link">
-						Purchase Guest Pass
-					</Link>
-					<button onClick={handleLogout} className="logout-btn">
-						Logout
-					</button>
-				</div>
-
-				<h3>My Court Reservations</h3>
-				{resError && <p className="res-error">{resError}</p>}
-				<div className="reservations">
-					{reservations.length === 0 ? (
-						<p>No reservations found.</p>
-					) : (
-						<ul>
-							{reservations.map((r) => (
-								<li key={r.reservationId}>
-									Court {r.courtNumber} on{" "}
-									{new Date(r.reservationDate).toLocaleDateString()} from{" "}
-									{r.startTime} to {r.endTime}
-								</li>
-							))}
-						</ul>
-					)}
-				</div>
-			</div>
-		</div>
-	);
+      <h3>My Reservations</h3>
+      {reservations.length === 0
+        ? <p>No active reservations.</p>
+        : (
+          <ul className="reservation-list">
+            {reservations.map(r => (
+              <li key={r.reservationId}>
+                Court {r.courtNumber} on{' '}
+                {new Date(r.reservationDate).toLocaleDateString()}{' '}
+                {r.startTime}–{r.endTime}
+                <button
+                  className="cancel-btn"
+                  onClick={() => handleCancel(r.reservationId)}
+                >
+                  Cancel
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      <button onClick={logout} className="logout-btn">Logout</button>
+    </div>
+  );
 };
 
 export default MyAccountPage;

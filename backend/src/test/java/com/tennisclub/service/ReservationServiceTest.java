@@ -44,8 +44,6 @@ class ReservationServiceTest {
 
     // Prepare a valid DTO for a future reservation date
     validDTO = new CourtReservationDTO(
-      "Test User",
-      "test@example.com",
       1,
       "2025-05-01",   // moved from 2025-04-10 to a future date
       "08:00"
