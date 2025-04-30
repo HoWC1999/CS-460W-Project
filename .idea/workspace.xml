@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8174cad9-5d7e-42e5-9a3a-ff380115db7a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/MyAccountPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/MyAccountPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/UpdateProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/UpdateProfilePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/MyAccountPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/MyAccountPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/CourtReservation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/CourtReservation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/CourtReservation.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/CourtReservation.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,7 @@
         <option value="package.json" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -209,7 +210,7 @@
       <workItem from="1745851165558" duration="11196000" />
       <workItem from="1745862922829" duration="454000" />
       <workItem from="1745961293414" duration="6037000" />
-      <workItem from="1745973620436" duration="2360000" />
+      <workItem from="1745973620436" duration="4083000" />
     </task>
     <servers />
   </component>
