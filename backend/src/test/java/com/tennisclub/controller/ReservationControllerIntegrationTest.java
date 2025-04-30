@@ -73,7 +73,7 @@ class ReservationControllerIntegrationTest {
     String token = loginJsonNode.get("token").asText();
 
     // Create a reservation DTO with valid test data.
-    CourtReservationDTO reservationDTO = new CourtReservationDTO( 2, "2025-05-01", "10:00");
+    CourtReservationDTO reservationDTO = new CourtReservationDTO("John Doe", "ad@min.org", 2, "2025-05-01", "10:00");
     String reservationJson = objectMapper.writeValueAsString(reservationDTO);
 
     // Perform the secured reservation creation request using the JWT token.

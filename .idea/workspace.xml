@@ -5,18 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8174cad9-5d7e-42e5-9a3a-ff380115db7a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/CS-460W-Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/dto/RegistrationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/EventRegistration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/repository/EventRegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/dto/CourtReservationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/dto/CourtReservationDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/CourtReservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/CourtReservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/controller/ReservationControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/controller/ReservationControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/service/ReservationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/tennisclub/service/ReservationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/controller/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/service/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/util/DataSeeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/util/DataSeeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tennisclub/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ProtectedRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AdminDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AdminEventManagementPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AdminEventManagementPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AssignRolePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AssignRolePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AuditLogs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AuditLogs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Events.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Events.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/RegisterPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/TreasurerBillingManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/TreasurerBillingManagement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/TreasurerDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/TreasurerDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/UserManagementPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/UserManagementPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/MyAccountPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/MyAccountPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/reservationService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/reservationService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/PurchaseGuestPassPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/PurchaseGuestPassPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/account/UpdateProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/account/UpdateProfilePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/auditService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/auditService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/eventService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/eventService.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles/AdminDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/AdminDashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/import.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/asset-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/css/main.232ad3ff.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/css/main.232ad3ff.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/js/488.e75445ad.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/js/488.e75445ad.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/js/main.8429520c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/js/main.8429520c.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/js/main.8429520c.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/media/img1.86f8c6ec6578887d6227.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/media/img3.5e695116fce6f815fdbd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-460W-Project/static/static/media/logo.82968a8cb8dd31cff8a5.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +254,7 @@
       <updated>1745851163562</updated>
       <workItem from="1745851165558" duration="11196000" />
       <workItem from="1745862922829" duration="454000" />
-      <workItem from="1745961293414" duration="5329000" />
+      <workItem from="1745961293414" duration="2152000" />
     </task>
     <servers />
   </component>
