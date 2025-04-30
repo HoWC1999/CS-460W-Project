@@ -1,0 +1,69 @@
+/* Full-page blurred background between header & footer */
+.user-management-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px);
+}
+
+.user-management-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/admin.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+/* Main container for user management UI */
+.user-management-container {
+	position: relative;
+	max-width: 900px;
+	margin: 60px auto;
+	padding: 40px 30px;
+	background: rgba(255,255,255,0.9);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	font-family: 'Montserrat', sans-serif;
+	color: #333;
+}
+
+/* Headings */
+.user-management-container h2 {
+	margin-bottom: 24px;
+	font-size: 2rem;
+}
+
+/* Error message */
+.user-management-container .error {
+	color: #c0392b;
+	margin-bottom: 20px;
+}
+
+/* User list */
+.user-management-container ul {
+	list-style: none;
+	padding: 0;
+}
+
+.user-management-container li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.user-management-container li button {
+	padding: 6px 12px;
+	background-color: #c0392b;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.user-management-container li button:hover {
+	background-color: #962d22;
+}

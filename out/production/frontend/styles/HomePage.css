@@ -1,0 +1,154 @@
+/* outer container, background image */
+.homepage {
+	background: url("../images/img3.jpg") no-repeat center center;
+	min-height: calc(100vh - 120px);
+	background-size: cover;
+}
+
+.homepage-container {
+	margin: 0;
+	padding: 0;
+}
+
+/* reduce hero height so membership peeks up */
+.main-content {
+	position: relative;
+	display: flex;
+	min-height: 60vh;    /* was 90vh */
+	z-index: 0;
+	overflow: hidden;
+}
+
+.main-content::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/* you can enable blur here if desired */
+	/* filter: blur(5px); */
+	z-index: -1;
+}
+
+/* center carousel */
+.handle-carousel {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+/* slim down the chatbox */
+.chatbox {
+	width: 280px;           /* narrower */
+	align-self: flex-start; /* only as tall as its contents */
+	margin: 40px;           /* add breathing room */
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	border-left: 2px solid #ccc;
+	background-color: #218838;
+	border-radius: 8px;
+}
+
+.chatbox h2 {
+	margin: 0 0 10px;
+	color: #fff;
+}
+
+.chatbox p {
+	color: #f8f9fa;
+	margin: 0 0 10px;
+}
+
+.chat-input {
+	resize: none;
+	min-height: 100px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 10px;
+	font-family: inherit;
+	font-size: 1rem;
+}
+
+.chat-submit {
+	cursor: pointer;
+	padding: 10px 20px;
+	background-color: #fff;
+	color: #218838;
+	font-weight: bold;
+	border: 2px solid #fff;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+}
+
+.chat-submit:hover {
+	background-color: #e8e8e8;
+}
+
+/* pull the membership card up over the image */
+.membership-section {
+	position: relative;
+	padding: 0 20px;
+}
+
+.membership-container {
+	position: relative;
+	top: -120px;                 /* lift up into view */
+	margin: 0 auto 60px auto;
+	max-width: 1000px;
+	background-color: #fff;      /* white canvas */
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	z-index: 1;
+	text-align: left;
+}
+
+.membership-container h2 {
+	font-size: 2rem;
+	color: #2d6a4f;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.membership-container p {
+	font-size: 1rem;
+	color: #333;
+	line-height: 1.5;
+	margin-bottom: 10px;
+}
+
+.promo-note {
+	font-weight: bold;
+	color: #e85d04;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.membership-container h3 {
+	font-size: 1.5rem;
+	margin: 30px 0 10px;
+}
+
+.membership-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.membership-table th,
+.membership-table td {
+	border: 1px solid #ccc;
+	padding: 12px;
+	text-align: center;
+}
+
+.membership-table th {
+	background-color: #2d6a4f;
+	color: #fff;
+}

@@ -1,0 +1,77 @@
+/* Full-page blurred background between header & footer */
+.update-profile-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px);
+}
+
+.update-profile-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/member.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+/* Card container */
+.update-profile-container {
+	position: relative;
+	max-width: 600px;
+	margin: 60px auto;
+	padding: 40px 30px;
+	background: rgba(255,255,255,0.9);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	font-family: 'Montserrat', sans-serif;
+	color: #333;
+}
+
+/* Heading */
+.update-profile-container h2 {
+	text-align: center;
+	margin-bottom: 24px;
+	font-size: 1.8rem;
+}
+
+/* Form styling */
+.update-profile-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.update-profile-form label {
+	font-weight: bold;
+}
+
+.update-profile-form input {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 1rem;
+}
+
+.update-profile-form button {
+	align-self: center;
+	padding: 10px 20px;
+	background-color: #218838;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.update-profile-form button:hover {
+	background-color: #1c6e2c;
+	transform: translateY(-1px);
+}
+
+/* Error message */
+.error {
+	color: #c0392b;
+	text-align: center;
+}

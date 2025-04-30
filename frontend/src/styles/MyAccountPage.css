@@ -1,106 +1,112 @@
+/* src/styles/MyAccountPage.css */
+
 /* Full-page blurred background between header & footer */
 .my-account-page {
-	position: relative;
-	overflow: hidden;
-	min-height: calc(100vh - 120px);
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 120px);
 }
-
 .my-account-page::before {
-	content: "";
-	position: absolute;
-	top: 0; right: 0; bottom: 0; left: 0;
-	background: url("../images/member.jpg") no-repeat center center;
-	background-size: cover;
-	filter: blur(6px);
-	z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: url("../images/member.jpg") no-repeat center center;
+  background-size: cover;
+  filter: blur(6px);
+  z-index: -1;
 }
 
 /* Card container */
 .my-account-container {
-	position: relative;
-	max-width: 800px;
-	margin: 60px auto;
-	padding: 40px 30px;
-	background: rgba(255,255,255,0.95);
-	border-radius: 8px;
-	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-	font-family: 'Montserrat', sans-serif;
-	color: #333;
+  position: relative;
+  z-index: 1; /* float above blurred bg */
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  /* slightly more opaque for maximum legibility */
+  background: rgba(255,255,255,0.96);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: 'Montserrat', sans-serif;
+  color: #2c3e50;
+  /* subtle text-shadow to boost contrast */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 /* Page heading */
 .my-account-container h2 {
-	margin-bottom: 24px;
-	text-align: center;
-	font-size: 2rem;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 2rem;
+  color: #1f2d3a;
 }
 
 /* Profile info grid */
 .profile {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 20px;
-	margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
-
 .profile-item {
-	background: #f8f9fa;
-	padding: 12px;
-	border-radius: 4px;
-	box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  background: #f8f9fa;
+  padding: 14px;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  color: #333;
 }
 
 /* Action links and logout button */
 .actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: center;
-	margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
 }
-
 .action-link,
 .logout-btn {
-	padding: 10px 16px;
-	background-color: #218838;
-	color: #fff;
-	text-decoration: none;
-	border: none;
-	border-radius: 4px;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background-color 0.2s ease, transform 0.1s ease;
+  padding: 10px 16px;
+  background-color: #218838;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
-
 .action-link:hover,
 .logout-btn:hover {
-	background-color: #1c6e2c;
-	transform: translateY(-1px);
+  background-color: #1c6e2c;
+  transform: translateY(-1px);
 }
 
 /* Reservations list */
-.reservations ul {
-	list-style: none;
-	padding: 0;
-}
-
-.reservations li {
-	padding: 12px;
-	margin-bottom: 8px;
-	background: #fff;
-	border-radius: 4px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
 .reservations h3 {
-	margin-top: 0;
-	margin-bottom: 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #1f2d3a;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.reservations ul {
+  list-style: none;
+  padding: 0;
+}
+.reservations li {
+  padding: 14px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  color: #2c3e50;
 }
 
 /* Error messages */
 .error,
 .res-error {
-	color: #c0392b;
-	text-align: center;
-	margin-bottom: 20px;
+  color: #c0392b;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
 }

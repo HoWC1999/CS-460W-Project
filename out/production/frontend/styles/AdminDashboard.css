@@ -1,0 +1,116 @@
+/* src/styles/AdminDashboard.css */
+
+/* full-page blurred background between header & footer */
+.admin-dashboard-page {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 120px); /* adjust if your header+footer height differs */
+}
+.admin-dashboard-page::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: url("../images/admin.jpg") no-repeat center center;
+  background-size: cover;
+  filter: blur(6px);
+  z-index: -1;
+}
+
+/* main container to hold all dashboard UI */
+.admin-dashboard-page > .admin-dashboard-container {
+  position: relative;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: 'Montserrat', sans-serif;
+  color: #2c3e50;
+}
+
+/* heading */
+.admin-dashboard-container h2 {
+  margin-bottom: 24px;
+  font-size: 2rem;
+}
+
+/* navigation links */
+.admin-links {
+  margin-bottom: 32px;
+}
+.admin-links a {
+  margin-right: 16px;
+  color: #218838;
+  text-decoration: none;
+  font-weight: bold;
+}
+.admin-links a:hover {
+  text-decoration: underline;
+}
+
+/* section headings */
+.admin-dashboard-container h3 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #218838;
+  padding-bottom: 4px;
+}
+
+/* base table styling */
+.passes-table,
+.reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* header row */
+.passes-table th,
+.reservations-table th {
+  background-color: #218838;
+  color: #fff;
+  text-align: left;
+  padding: 12px;
+}
+
+/* data cells */
+.passes-table td,
+.reservations-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* zebra striping */
+.passes-table tr:nth-child(even),
+.reservations-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* hover highlight */
+.passes-table tr:hover,
+.reservations-table tr:hover {
+  background-color: #e9f5ee;
+}
+
+/* cancel button */
+.cancel-btn {
+  background-color: #c82333;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cancel-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* error text */
+.error {
+  color: #c82333;
+  margin-top: 10px;
+}

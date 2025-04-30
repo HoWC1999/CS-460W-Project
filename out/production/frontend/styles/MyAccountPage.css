@@ -1,0 +1,106 @@
+/* Full-page blurred background between header & footer */
+.my-account-page {
+	position: relative;
+	overflow: hidden;
+	min-height: calc(100vh - 120px);
+}
+
+.my-account-page::before {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background: url("../images/member.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;
+}
+
+/* Card container */
+.my-account-container {
+	position: relative;
+	max-width: 800px;
+	margin: 60px auto;
+	padding: 40px 30px;
+	background: rgba(255,255,255,0.95);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	font-family: 'Montserrat', sans-serif;
+	color: #333;
+}
+
+/* Page heading */
+.my-account-container h2 {
+	margin-bottom: 24px;
+	text-align: center;
+	font-size: 2rem;
+}
+
+/* Profile info grid */
+.profile {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.profile-item {
+	background: #f8f9fa;
+	padding: 12px;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Action links and logout button */
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+
+.action-link,
+.logout-btn {
+	padding: 10px 16px;
+	background-color: #218838;
+	color: #fff;
+	text-decoration: none;
+	border: none;
+	border-radius: 4px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.action-link:hover,
+.logout-btn:hover {
+	background-color: #1c6e2c;
+	transform: translateY(-1px);
+}
+
+/* Reservations list */
+.reservations ul {
+	list-style: none;
+	padding: 0;
+}
+
+.reservations li {
+	padding: 12px;
+	margin-bottom: 8px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.reservations h3 {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+/* Error messages */
+.error,
+.res-error {
+	color: #c0392b;
+	text-align: center;
+	margin-bottom: 20px;
+}

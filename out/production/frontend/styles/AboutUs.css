@@ -1,0 +1,73 @@
+/* src/styles/AboutUs.css */
+
+/* page wrapper with blurred bg */
+.about-page {
+	position: relative;
+	padding: 60px 0;                          /* space for header & footer */
+	min-height: calc(100vh - 120px);         /* adjust 120px to header+footer height */
+	overflow: hidden;
+}
+
+.about-page::before {
+	content: "";
+	position: absolute;
+	top: 0;    left: 0;
+	right: 0;  bottom: 0;
+	background: url("../images/img1.jpg") no-repeat center center;
+	background-size: cover;
+	filter: blur(6px);
+	z-index: -1;                             /* behind the content */
+}
+
+/* 2) keep the card on top of the blurred bg */
+.about-container {
+	position: relative;
+	z-index: 1;
+
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 30px;
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	font-family: Arial, sans-serif;
+}
+
+/* existing styles below */
+.about-container h2 {
+	margin-bottom: 20px;
+	font-size: 2rem;
+	color: #218838;
+	border-bottom: 3px solid #218838;
+	padding-bottom: 8px;
+}
+
+.about-section {
+	margin-top: 24px;
+}
+
+.about-section h3 {
+	font-size: 1.4rem;
+	margin-bottom: 8px;
+	color: #333;
+}
+
+.about-section p {
+	line-height: 1.6;
+	color: #555;
+}
+
+.team-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.team-list li {
+	margin-bottom: 6px;
+	color: #444;
+}
+
+.team-list strong {
+	color: #222;
+}

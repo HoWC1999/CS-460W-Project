@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                     <td>{res.bookedBy?.username || res.bookedBy?.email}</td>
                     <td>{res.bookedBy?.fullName}</td>
                     <td>{res.courtNumber}</td>
-                    <td>{new Date(res.reservationDate).toLocaleDateString()}</td>
+                    <td>{res.reservationDate.substring(0, 10)} from{" "}</td>
                     <td>{res.startTime}–{res.endTime}</td>
                     <td>
                       <button
