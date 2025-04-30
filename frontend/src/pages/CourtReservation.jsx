@@ -23,12 +23,12 @@ const CourtReservation = () => {
   const [message, setMessage]   = useState('');
   const [events, setEvents]     = useState([]);
 
-  // Redirect if not logged in
+  // redirect if not logged in
   useEffect(() => {
     if (!user) navigate('/login', { replace: true });
   }, [user, navigate]);
 
-  // Fetch calendar events
+  // load calendar events
   useEffect(() => {
     loadReservations();
   }, []);
@@ -36,11 +36,11 @@ const CourtReservation = () => {
   const loadReservations = async () => {
     try {
       const all = await getAllReservations();
-      const evts = all.map(r => {
-        const start = new Date(`${r.reservationDate}T${r.startTime}`);
-        const end   = new Date(`${r.reservationDate}T${r.endTime}`);
-        return { title: `Court ${r.courtNumber}`, start, end };
-      });
+      const evts = all.map(r => ({
+        title: `Court ${r.courtNumber}`,
+        start: new Date(`${r.reservationDate}T${r.startTime}`),
+        end:   new Date(`${r.reservationDate}T${r.endTime}`)
+      }));
       setEvents(evts);
     } catch (err) {
       console.error('Failed to load reservations', err);
@@ -71,6 +71,17 @@ const CourtReservation = () => {
     }
   };
 
+  // generate 15-minute time slots between 08:00 and 18:00
+  const timeOptions = [];
+  for (let h = 8; h <= 18; h++) {
+    for (let m of [0,15,30,45]) {
+      if (h === 18 && m > 0) continue; // only up to 18:00
+      const hh = String(h).padStart(2,'0');
+      const mm = String(m).padStart(2,'0');
+      timeOptions.push(`${hh}:${mm}`);
+    }
+  }
+
   return (
     <div className="reservation-page">
       <div className="reservation-form-container">
@@ -90,6 +101,7 @@ const CourtReservation = () => {
               required
             />
           </label>
+
           <label>
             Date
             <input
@@ -100,21 +112,26 @@ const CourtReservation = () => {
               required
             />
           </label>
+
           <label>
             Time
-            <input
-              type="time"
+            <select
               name="time"
               value={formData.time}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">Select a time</option>
+              {timeOptions.map(t => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
           </label>
+
           <button type="submit">Reserve</button>
         </form>
       </div>
 
-      {/* Calendar rendered under the form */}
       <div className="calendar-container">
         <Calendar
           localizer={localizer}
@@ -122,10 +139,12 @@ const CourtReservation = () => {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 500, margin: '20px 0' }}
-          views={['month', 'week', 'day']}
+          views={['week','day','month']}
           defaultView="week"
           step={60}
           timeslots={1}
+          min={new Date(1970,1,1,8,0,0)}
+          max={new Date(1970,1,1,18,0,0)}
         />
       </div>
     </div>

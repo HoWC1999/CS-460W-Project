@@ -13,6 +13,7 @@ public interface GuestPassRepository extends JpaRepository<GuestPass, Integer> {
 
   // Find all guest passes for a given user
   List<GuestPass> findByUser(User user);
+  List<GuestPass> findByUser_UserId(int userId);
 
   // Find guest passes for a user between two dates (used for monthly limit)
   List<GuestPass> findByUserAndPurchaseDateBetween(User user, Date startDate, Date endDate);

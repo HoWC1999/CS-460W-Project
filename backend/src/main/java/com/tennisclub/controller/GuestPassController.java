@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/guestpasses")
 public class GuestPassController {
@@ -37,6 +39,23 @@ public class GuestPassController {
     } catch (Exception e) {
       logger.error("Error purchasing guest pass for user {}: {}", userId, e.getMessage(), e);
       return ResponseEntity.badRequest().body("Guest pass purchase failed: " + e.getMessage());
+    }
+  }
+
+  /**
+   * GET /api/guestpasses/my?userId={userId}
+   * Retrieves all guest passes for the given user.
+   */
+  @GetMapping("/my")
+  public ResponseEntity<?> getMyGuestPasses(@RequestParam("userId") int userId) {
+    try {
+      List<GuestPass> passes = guestPassService.getGuestPassesForUser(userId);
+      return ResponseEntity.ok(passes);
+    } catch (Exception e) {
+      logger.error("Error fetching guest passes for user {}: {}", userId, e.getMessage());
+      return ResponseEntity
+        .status(500)
+        .body("Could not fetch guest passes: " + e.getMessage());
     }
   }
 }

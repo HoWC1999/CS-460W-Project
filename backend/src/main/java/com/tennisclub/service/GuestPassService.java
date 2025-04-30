@@ -100,4 +100,14 @@ public class GuestPassService {
     logger.info("Fetching all guest passes");
     return guestPassRepository.findAll();
   }
+  /**
+   * Returns all guest passes belonging to the given user.
+   *
+   * @param userId the id of the user
+   * @return list of GuestPass entities
+   */
+  public List<GuestPass> getGuestPassesForUser(int userId) {
+    logger.info("Fetching guest passes for user {}", userId);
+    return guestPassRepository.findByUser_UserId(userId);
+  }
 }

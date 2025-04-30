@@ -34,7 +34,7 @@ function App() {
           <Route path="/treasurer/refunds" element={<RefundPage />} />
           <Route path="/account/MyAccountPage" element={<MyAccountPage />} />
           <Route path="/account/UpdateProfilePage" element={<UpdateProfilePage />} />
-          <Route path="/account/guestpass" element={<PurchaseGuestPassPage />} />
+          <Route path="/account/PurchaseGuestPassPage" element={<PurchaseGuestPassPage />} />
           <Route path="/billing" element={<MemberBillingPage />}/>
           <Route path="/Events" element={<Events />}/>
           <Route path="/about" element={<AboutUs />} />
